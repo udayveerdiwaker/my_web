@@ -1,5 +1,4 @@
 <?php
-include 'connection.php';
 include 'admin_panel.php';
 
 $id = $_GET['id'];
@@ -17,7 +16,7 @@ if (isset($_POST['update'])) {
   $update = "UPDATE `profession_categories` SET `profession`='$profssion_category' WHERE `id`= '$id' ";
   $category_result = mysqli_query($conn, $update);
   // print_r($category_result);
-  header("location:http://localhost/admin_panel/profession_category_table.php");
+  header("location:http://localhost/my_web/profession_category_table.php");
 }
 ?>
 

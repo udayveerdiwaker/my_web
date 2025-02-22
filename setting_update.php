@@ -1,6 +1,5 @@
 <?php
 include "admin_panel.php";
-include 'connection.php';
 
 $id = $_GET['id'];
 // echo $id;
@@ -33,7 +32,7 @@ if (isset($_POST['submit'])) {
   $tempname = $_FILES["logo"]["tmp_name"];
   $folder = 'image/' . $uploadlogo;
   move_uploaded_file($tempname, $folder);
-  header("Location: http://localhost/admin_panel/setting_table.php");
+  header("Location: http://localhost/my_web/setting_table.php");
 }
 
 ?>

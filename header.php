@@ -1,17 +1,20 @@
 <?php
 include 'connection.php';
+// $navigation = getall('navigationbar');
 $navigation = getall('navigationbar');
+// $categories = getall('profession_categories');
+$settings = getall('basic_setting');
 
-$setting = getall('basic_setting');
-print_r($navigation);
-print_r($setting);
-echo $navigation[1]["navbar_links"];
+// $setting = getall('basic_setting');
+// print_r($navigation);
+// print_r($setting);
+// // echo $navigation[1]["navbar_links"];
 
 
 
-// foreach ($navigation[1] as $key=>$value ) {
+// foreach ($navigation[1] as $key => $value) {
 //     if ($key == "navbar_links") {
-//         echo "$key: $value<br>";
+//         echo " $key: $value<br>";
 //     }
 // }
 
@@ -20,7 +23,7 @@ if (isset($_POST['subscribe'])) {
     $subscriber = "INSERT INTO `subscribers`(`subscriber`) VALUES ('$subscribe')";
     mysqli_query($conn, $subscriber);
 
-    // header("Location: http://localhost/admin_panel/home.php");
+    header("Location: http://localhost/my_web/home.php");
 }
 
 ?>
@@ -42,21 +45,17 @@ if (isset($_POST['subscribe'])) {
 
     <title>Document</title>
 </head>
-
-
-
-
 <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid  position-relative d-flex align-items-center justify-content-between">
-
-
-
         <nav id="navbar" class="navbar navbar-default navbar-expand-lg ">
             <div class="container-fluid">
-
                 <div class="logo">
                     <a class="navbar-brand text-white fs-1" href="home.php">
-                        <img src="<?php echo 'image/' . $resultall['logo'] ?>" style="width: 70px; border-radius: 5px;"></a>
+                        <!-- <img src="<?php echo 'image/' . $settings['logo'] ?>" style="width: 70px; border-radius: 5px;"> -->
+                        <?php foreach ($settings as $setting) : ?>
+                            <img src="image/<?php echo $setting['logo']; ?>" alt="Site Logo" width="100">
+                        <?php endforeach; ?>
+                    </a>
                 </div>
                 <button class="navbar-toggler bg-info text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

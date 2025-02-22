@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
   $message = $_POST['message'];
   $insert = "INSERT INTO `contact_data` (`name`, `email`, `contact`, `subject`, `message`) VALUES ('$name','$email','$contact','$subject','$message')";
   mysqli_query($conn, $insert);
-  header('location: http://localhost/admin_panel/contact.php');
+  header('location: http://localhost/my_web/contact.php');
 }
 
 ?>
@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
               <i class="bi bi-telephone flex-shrink-0"></i>
               <div>
                 <h3>Call Us</h3>
-                <p>+19 <?php echo  $resultall['number'] ?></p>
+                <p>+19 <?php echo  $setting['number'] ?></p>
               </div>
             </div>
 
@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
               <i class="bi bi-envelope flex-shrink-0"></i>
               <div>
                 <h3>Email Us</h3>
-                <p><a href="#"><?php echo  $resultall['email'] ?></a></p>
+                <p><a href="#"><?php echo  $setting['email'] ?></a></p>
               </div>
             </div>
 

@@ -1,7 +1,6 @@
 <?php
 include "admin_panel.php";
 
-include "connection.php";
 
 if (isset($_POST['submit'])) {
     $navlinks = $_POST['navlinks'];
@@ -15,7 +14,7 @@ if (isset($_POST['submit'])) {
     $insert = "INSERT INTO `navigationbar` (`navbar_links`,`body`,`href`) VALUES ('$escaped_navlinks','$escaped_text','$escaped_href') ";
     mysqli_query($conn, $insert);
 
-    header("Location: http://localhost/admin_panel/navigation_table.php");
+    header("Location: http://localhost/my_web/navigation_table.php");
 }
 
 

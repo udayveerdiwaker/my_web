@@ -1,5 +1,4 @@
 <?php
-include 'connection.php';
 include 'admin_panel.php';
 $id = $_GET['id'];
 // echo ($id);
@@ -22,7 +21,7 @@ if (isset($_POST['update'])) {
   mysqli_query($conn, $update);
 
 
-  header("location:http://localhost/admin_panel/navigation_table.php");
+  header("location:http://localhost/my_web/navigation_table.php");
 }
 
 

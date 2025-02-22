@@ -1,6 +1,5 @@
 <?php
 include "admin_panel.php";
-include 'connection.php';
 
 $sql = "SELECT `id`, `navbar_links`, `body` ,`href` FROM `navigationbar` ";
 $result = mysqli_query($conn, $sql);

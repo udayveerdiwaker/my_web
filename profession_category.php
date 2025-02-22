@@ -1,13 +1,12 @@
 <?php
 include "admin_panel.php";
-include "connection.php";
 
 
 if (isset($_POST['submit'])) {
     $profession = $_POST['profession'];
     $sql1 = "INSERT INTO `profession_categories` (`profession`) VALUE ('$profession')";
     mysqli_query($conn, $sql1);
-    header("location:http://localhost/admin_panel/profession_category_table.php");
+    header("location:http://localhost/my_web/profession_category_table.php");
 }
 
 ?>

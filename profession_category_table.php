@@ -1,6 +1,5 @@
 <?php
 include "admin_panel.php";
-include 'connection.php';
 
 $profession_table = "SELECT `id`, `profession` FROM `profession_categories` ";
 $tableresult = mysqli_query($conn, $profession_table);
