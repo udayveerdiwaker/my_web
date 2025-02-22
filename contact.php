@@ -20,12 +20,12 @@ if (isset($_POST['submit'])) {
 
   <section id="contact" class="contact section ">
     <div class="container section-title" data-aos="fade-up">
-      <h2 class="abo"><?php echo $navigation[$contact]['navbar_links']; ?></h2>
+      <h2 class="abo"><?php echo $page_name[$contact]['navbar_links']; ?></h2>
 
       <p>Contact me and I help you.</p>
     </div>
 
-    <div><?php echo $navigation[$contact]['body']; ?>
+    <div><?php echo $page_name[$contact]['body']; ?>
 
     </div>
 

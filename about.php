@@ -1,22 +1,26 @@
 <?php
+$about = $_GET['about'];
+
+// $about = $_GET['about'];
+// echo $about;
 include 'header.php';
-$about=strtolower($_GET['about'])
+
 ?>
 
 
 
-  <section id="about" class="about section ">
-    <div class="container section-title">
-    <h2 class="abo"><?php echo $navigation[$about]['navbar_links'];?></h2>
+<section id="about" class="about section ">
+  <div class="container section-title">
+    <h2 class="abo"><?php echo $page_name[$about]['navbar_links']; ?></h2>
     <p>My name is Shiva Diwaker, I am leaving from Rishikesh, and I am Learning Web development Course,
-        My hobbies is play Cricket Football and Swimming, and I am enjoy doing in my free time songs and, and My short-term or long-term goals My working towards in Web development.</p>
-    </div>
-    <div><?php echo $navigation[$about]['body'];?>
-  
+      My hobbies is play Cricket Football and Swimming, and I am enjoy doing in my free time songs and, and My short-term or long-term goals My working towards in Web development.</p>
   </div>
-  </section>
+  <div><?php echo $page_name[$about]['body']; ?>
 
-    <!-- <div class="container" data-aos="fade-up" data-aos-delay="100">
+  </div>
+</section>
+
+<!-- <div class="container" data-aos="fade-up" data-aos-delay="100">
       <div class="row gy-4 justify-content-center">
         <div class="col-lg-4"><a href="home.php">
       <img src="<?php echo 'image/' . $settings['images'] ?>" class="img-fluid" width="100%">
@@ -47,10 +51,7 @@ $about=strtolower($_GET['about'])
         </div>
       </div> 
     </div> -->
-  <?php
+<?php
 include 'footer.php';
 
 ?>
-
-
-

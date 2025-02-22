@@ -4,10 +4,10 @@ $resume = strtolower($_GET['resume']);
 ?>
   <section id="resume" class="resume section ">
     <div class="container section-title">
-      <h2 class="abo"><?php echo $navigation[$resume]['navbar_links'];?></h2>
+      <h2 class="abo"><?php echo $page_name[$resume]['navbar_links'];?></h2>
       <h3>Introduction</h3>
       <p>My name is Shiva Diwaker and I am Leaving from Rishikesh Uttarakhand and My birth is uttar pardesh 38 the district is shambhal My village is Raja ka majhola and My Education is 1 to 5 class primary school hindi medium and 6 to 8 class junior school hindi medium and 10th and 12th school punjab shing kshetra inter college rishikesh Dehradun and my school srtudy is complete in 2024-2025 and I am preparastion for BCA.</p>
-      <div><?php echo $navigation[$resume]['body'];?>
+      <div><?php echo $page_name[$resume]['body'];?>
   
   </div>
     

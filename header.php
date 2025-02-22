@@ -2,18 +2,25 @@
 include 'connection.php';
 // $navigation = getall('navigationbar');
 $navigation = getall('navigationbar');
-foreach($navigation as $nav){
-    
+// print_r($navigation);
 
+$page_name=array();
+
+foreach($navigation as $nav){
+  $page_name[$nav['navbar_links']] = $nav;
+
+
+//   print_r($page_name);
 }
-print_r($nav);
+
+// exit;
 // echo $navigation['navbar_links'];
 // $categories = getall('profession_categories');
 $settings = getall1('basic_setting');
 
 // $setting = getall('basic_setting');
-print_r($navigation);
-echo $navigation['navbar_links'];
+// print_r($navigation);
+// echo $navigation['navbar_links'];
 // print_r($settings['first_name']);
 // // echo $navigation[1]["navbar_links"];
 

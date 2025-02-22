@@ -12,8 +12,8 @@ $nav_all = mysqli_fetch_assoc($navigation);
 // // exit();
 
 if (isset($_POST['update'])) {
-  $escaped_navbar_links = $conn->real_escape_string($_POST['navbar_links']);
-  $escaped_href = $conn->real_escape_string($_POST['href']);
+  $escaped_navbar_links = $conn->real_escape_string(strtolower($_POST['navbar_links']));
+  $escaped_href = $conn->real_escape_string(strtolower($_POST['href']));
   $escaped_text = $conn->real_escape_string($_POST['text']);
 
   $update = "UPDATE `navigationbar` SET `navbar_links` = '$escaped_navbar_links', `href` = '$escaped_href', `body`='$escaped_text' WHERE `id` = '$id'";
