@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
               <i class="bi bi-telephone flex-shrink-0"></i>
               <div>
                 <h3>Call Us</h3>
-                <p>+19 <?php echo  $setting['number'] ?></p>
+                <p>+19 <?php echo  $settings['number'] ?></p>
               </div>
             </div>
 
@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
               <i class="bi bi-envelope flex-shrink-0"></i>
               <div>
                 <h3>Email Us</h3>
-                <p><a href="#"><?php echo  $setting['email'] ?></a></p>
+                <p><a href="#"><?php echo  $settings['email'] ?></a></p>
               </div>
             </div>
 

@@ -1,6 +1,9 @@
 <?php
+
 include 'header.php';
-// $skills = strtolower($_GET['skills'])
+$skills = strtolower($_GET['skills']);
+echo $skills;
+
 ?>
 <section id="skills" class="skills section">
 

@@ -6,6 +6,13 @@ $pass = '';
 $dbname = 'project';
 $conn = mysqli_connect($server, $user, $pass, $dbname);
 
+if ($conn) {
+  // echo "Connection successfully";
+} else {
+  echo "Connection failed";
+}
+
+
 function getall($getalldata)
 {
   global $conn;
@@ -13,16 +20,17 @@ function getall($getalldata)
   $nav_links = mysqli_query($conn, $navbar);
   while ($links = mysqli_fetch_assoc($nav_links)) {
     $all_pages[] = $links;
-  }
-
+  } 
   return $all_pages;
 
-  $Setting = "SELECT * FROM " . $getalldata;
-  $settingresult = mysqli_query($conn, $Setting);
-  $resultall = mysqli_fetch_assoc($settingresult);
-  return $resultall;
-  print_r($resultall);
 
+
+  // $Setting = "SELECT * FROM `basic_setting`" . $getalldata;
+  // $settingresult = mysqli_query($conn, $Setting);
+  // $resultall = mysqli_fetch_assoc($settingresult);
+  // return $resultall;
+  // print_r($resultall);
+  // exit;
 
   //   //   if($getalldata == 'profession_categories'){
   //   //   $category = "SELECT `profession` FROM `profession_categories`";
@@ -33,6 +41,20 @@ function getall($getalldata)
   //   // strtolower($links['navbar_links']);
 
   //   //    print_r($all_pages);
+
 };
 
-getall('basic_setting');
+
+function getall1($getalldata1)
+{
+  global $conn;
+  // echo $getalldata1;
+  $Setting = "SELECT * FROM  `$getalldata1`";
+  $settingresult = mysqli_query($conn, $Setting);
+  $resultall = mysqli_fetch_assoc($settingresult);
+  // print_r($resultall);
+  // exit;
+  return $resultall;
+};
+
+// getall1('basic_setting');

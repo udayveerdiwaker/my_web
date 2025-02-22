@@ -81,7 +81,7 @@ if ("") {
 
 $Setting = "SELECT * FROM `basic_setting`  WHERE `id` = '$id' ";
 $settingresult = mysqli_query($conn, $Setting);
-$resultall = mysqli_fetch_assoc($settingresult);
+$settings = mysqli_fetch_assoc($settingresult);
 // print_r($rows);
 // exit();
 

@@ -8,7 +8,7 @@ $id = $_GET['id'];
 
 $Setting = "SELECT * FROM `basic_setting`  WHERE `id` = '$id' ";
 $settingresult = mysqli_query($conn, $Setting);
-$resultall = mysqli_fetch_assoc($settingresult);
+$settings = mysqli_fetch_assoc($settingresult);
 // print_r($rows);
 // exit();
 
@@ -55,22 +55,22 @@ if (isset($_POST['submit'])) {
 
           <div class="col-md-6">
             <label for="first-name" class="form-label">Enter First Name</label>
-            <input type="text" class="form-control" id="first-name" value="<?php echo $resultall['first_name'] ?>" name="first_name">
+            <input type="text" class="form-control" id="first-name" value="<?php echo $settings['first_name'] ?>" name="first_name">
           </div>
 
           <div class="col-md-6">
             <label for="inputemail" class="form-label">Enter Email</label>
-            <input type="email" class="form-control" value="<?php echo $resultall['email'] ?>" id="inputemail" name="email">
+            <input type="email" class="form-control" value="<?php echo $settings['email'] ?>" id="inputemail" name="email">
           </div>
 
           <div class="col-md-6">
             <label for="inputnumber" class="pb-2">Contact</label>
-            <input type="mobile" minlength="0" maxlength="10" value="<?php echo $resultall['number'] ?>" class="form-control" placeholder="+19" name="number" id="inputnumber-field">
+            <input type="mobile" minlength="0" maxlength="10" value="<?php echo $settings['number'] ?>" class="form-control" placeholder="+19" name="number" id="inputnumber-field">
           </div>
 
           <div class="col-md-6">
             <label for="inputimage" class="pb-2">Add Photos</label>
-            <input type="file" class="form-control" name="images" value="<?php echo $resultall['images'] ?>" id="inputimage">
+            <input type="file" class="form-control" name="images" value="<?php echo $settings['images'] ?>" id="inputimage">
           </div>
 
 

@@ -2,12 +2,19 @@
 include 'connection.php';
 // $navigation = getall('navigationbar');
 $navigation = getall('navigationbar');
+foreach($navigation as $nav){
+    
+
+}
+print_r($nav);
+// echo $navigation['navbar_links'];
 // $categories = getall('profession_categories');
-$settings = getall('basic_setting');
+$settings = getall1('basic_setting');
 
 // $setting = getall('basic_setting');
-// print_r($navigation);
-// print_r($setting);
+print_r($navigation);
+echo $navigation['navbar_links'];
+// print_r($settings['first_name']);
 // // echo $navigation[1]["navbar_links"];
 
 
@@ -51,10 +58,12 @@ if (isset($_POST['subscribe'])) {
             <div class="container-fluid">
                 <div class="logo">
                     <a class="navbar-brand text-white fs-1" href="home.php">
-                        <!-- <img src="<?php echo 'image/' . $settings['logo'] ?>" style="width: 70px; border-radius: 5px;"> -->
-                        <?php foreach ($settings as $setting) : ?>
+                        <img src="<?php echo 'image/' . $settings['logo'] ?>" style="width: 70px; border-radius: 5px;">
+
+
+                        <!-- <?php foreach ($settings as $setting) : ?>
                             <img src="image/<?php echo $setting['logo']; ?>" alt="Site Logo" width="100">
-                        <?php endforeach; ?>
+                        <?php endforeach; ?> -->
                     </a>
                 </div>
                 <button class="navbar-toggler bg-info text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">

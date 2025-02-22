@@ -19,8 +19,8 @@ $resume = strtolower($_GET['resume']);
           <div class="resume-item pb-0">
             <h4><b>Shiva Diwaker</b></h4>
             <ul>
-              <li><b>Email id: </b><a href=""><?php echo $resultall['email']?></a></li>
-              <li><b>Mobile no. :</b>+19 <?php echo $resultall['number']?></li>
+              <li><b>Email id: </b><a href=""><?php echo $settings['email']?></a></li>
+              <li><b>Mobile no. :</b>+19 <?php echo $settings['number']?></li>
               <li><b>Address: </b>House No. 507 Awas Vikas Colony Rishikesh (Dehradun) Uttarakhand</li>
             </ul>
           </div>

@@ -4,7 +4,7 @@ include 'header.php';
 <section id="home" class="home section dark-background">
   <div class="container section_home">
     <a href="home.php">
-      <h1>Hi,it's<p class="Text"><?php echo $resultall['first_name'] ?></p>
+      <h1>Hi,it's<p class="Text"><?php echo $settings['first_name'] ?></p>
       </h1>
     </a>
 
@@ -19,7 +19,7 @@ include 'header.php';
 
   </div>
   <div class="profile-img">
-    <img src="<?php echo 'image/' . $resultall['images'] ?>" class="img-fluid ">
+    <img src="<?php echo 'image/' . $settings['images'] ?>" class="img-fluid ">
   </div>
 
 
