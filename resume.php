@@ -1,6 +1,8 @@
 <?php
 include 'header.php';
-$resume = strtolower($_GET['resume']);
+// $resume = strtolower($_GET['resume']);
+$resume = $_GET['resume'];
+
 ?>
   <section id="resume" class="resume section ">
     <div class="container section-title">

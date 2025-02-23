@@ -1,6 +1,6 @@
 <?php
 include 'header.php';
-$contact = strtolower($_GET['contact']);
+$contact = $_GET['contact'];
 
 if (isset($_POST['submit'])) {
   $name = $_POST['name'];
