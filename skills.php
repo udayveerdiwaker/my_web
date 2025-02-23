@@ -1,23 +1,20 @@
 <?php
-
 include 'header.php';
 $skills = $_GET['skills'];
 
-// $skills = $_GET['skills'];
-echo $skills;
-
+// echo $skills;
 ?>
 <section id="skills" class="skills section">
 
   <div class="container section-title aos-init aos-animate" data-aos="fade-up">
-    <h2 class="abo"><?php echo $page_name[$skills]['navbar_links']; ?></h2> 
+    <h2 class="abo"><?php echo $page_name[$skills]['navbar_links']; ?></h2>
     <p>My Skills is HTML, Css, Bootstrap, JavaScript, PHP, and Photoshop.</p>
 
     <div>
-      <!-- <?php echo $page_name[$skills]['body']; ?>
+      <?php echo $page_name[$skills]['body']; ?>
     </div>
 </section>
-
+<!--
 <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
   <div class="row skills-content skills-animation">
     <div class="col-lg-6">
@@ -55,9 +52,8 @@ echo $skills;
       </div>
     </div>
   </div>
-</div>
+</div>-->
 
 <?php
 include 'footer.php';
-
 ?>

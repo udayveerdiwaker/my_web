@@ -4,13 +4,13 @@ include 'connection.php';
 $navigation = getall('navigationbar');
 // print_r($navigation);
 
-$page_name=array();
+$page_name = array();
 
-foreach($navigation as $nav){
-  $page_name[$nav['navbar_links']] = $nav;
+foreach ($navigation as $nav) {
+    $page_name[$nav['navbar_links']] = $nav;
 
 
-//   print_r($page_name);
+    //   print_r($page_name);
 }
 
 // exit;
@@ -32,6 +32,7 @@ $settings = getall1('basic_setting');
 //     }
 // }
 
+
 if (isset($_POST['subscribe'])) {
     $subscribe = $_POST['email'];
     $subscriber = "INSERT INTO `subscribers`(`subscriber`) VALUES ('$subscribe')";
@@ -39,6 +40,10 @@ if (isset($_POST['subscribe'])) {
 
     header("Location: http://localhost/my_web/home.php");
 }
+// $href = isset($_GET['page']) ? $_GET['page'] : ' ';
+// $result = $conn->query("SELECT * FROM navigationbar WHERE href='$href'");
+// $allPages = $conn->query("SELECT * FROM navigationbar")->fetch_all(MYSQLI_ASSOC);
+
 
 ?>
 <!DOCTYPE html>
@@ -84,9 +89,51 @@ if (isset($_POST['subscribe'])) {
                                 <a id="link" class="nav active" href=" <?php echo $links['href'] ?>"> <?php echo $links['navbar_links'] ?></a>
                             </li>
                         <?php } ?>
+
+                        <!-- <?php foreach ($allPages as $page) { ?>
+                            <li class="nav-item">
+                                <a id="link" class="nav active" href="header.php?page=<?php echo $page['href']; ?>"><?php echo $page['navbar_links']; ?></a>
+                            </li>
+                        <?php } ?> -->
+
+
+                        <!-- <?php
+                        //  while ($page = $allPages->fetch_assoc()) {
+                             ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?page=<?php 
+                                // echo $allPages['href'];
+                                 ?>">
+                                    <?php 
+                                    // echo $allPages['navbar_links']; 
+                                    ?>
+                            </a>
+                            </li>
+                        <?php
+                        //  }
+                         ?> -->
+
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
 </header>
+
+<!-- <section class="section">
+    <div class="container section-title aos-init aos-animate " data-aos="fade-up">
+
+     
+        <?php
+        // if ($result->num_rows > 0) {
+        //     $row = $result->fetch_assoc();
+        //     echo "<h1>{$row['title']}</h1><p>{$row['content']}</p>";
+        // } else {
+        //     echo "<h1>Page Not Found</h1>";
+        // }
+        ?>
+    </div>
+</section>
+<?php
+// include 'footer.php';
+?> -->

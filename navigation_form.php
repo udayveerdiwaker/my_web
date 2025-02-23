@@ -17,35 +17,18 @@ if (isset($_POST['submit'])) {
     header("Location: http://localhost/my_web/navigation_table.php");
 }
 
+// if (isset($_POST['add'])) {
+//     $title = $_POST['title'];
+//     $content = $_POST['content'];
+//     $href = strtolower(str_replace(' ', '-', $title));
 
-// // Check connection
-// if ($conn->connect_error) {
-//     die("Connection failed: " . $conn->connect_error);
+//     $insert = "INSERT INTO `navigationbar` (`navbar_links`,`body`,`href`) VALUES ('$title','$content','$href') ";
+//     mysqli_query($conn, $insert);
+
+
+//     // $conn->query("INSERT INTO `navigationbar` (`navbar_links`,`body`,`href`) VALUES ('$title','$content','$href')");
+//     header("Location: http://localhost/my_web/navigation_table.php");
 // }
-
-// // Check if form is submitted
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     // Get the textarea content and escape it
-//     $navlinks = $conn->real_escape_string($_POST['navlinks']);
-//     $text = $conn->real_escape_string($_POST['text']);
-//     $href = $conn->real_escape_string($_POST['href']);
-
-//     // Prepare the SQL statement
-//     $sql = "INSERT INTO `navigationbar` (`navbar_links`,`body`,`href`) VALUES ('$navlinks','$text','$href')";
-
-//     // Execute the query
-//     if ($conn->query($sql) === TRUE) {
-//         echo "New record created successfully";
-//     } else {
-//         echo "Error: " . $sql . "<br>" . $conn->error;
-//     }
-//     header("Location: http://localhost/admin_panel/navigation_table.php");
-
-// }
-
-// // Close connection
-// $conn->close();
-
 ?>
 
 
@@ -67,7 +50,7 @@ if (isset($_POST['submit'])) {
 <div class="container-fluid">
     <div class="row">
         <div class="container border border-4 border-warning">
-            <p class="display-6 text-info text-center"><b>Add Navigationbar Data</b></p>
+            <p class="display-6 text-info text-center"><b>Create a New Page</b></p>
             <form action="navigation_form.php" method="POST" enctype="multipart/form-data" class="row g-3">
                 <div class="col-md-4">
                     <label class="form-label ">Add navigation Links</label>
@@ -89,6 +72,26 @@ if (isset($_POST['submit'])) {
                 </div>
             </form>
 
+            <!-- <h2 class="mt-3">Create a New Page</h2> -->
+            <!-- <form action="navigation_form.php" method="POST" enctype="multipart/form-data" class="row g-3">
+                <div class="col-md-4">
+                    <input type='text' name='title' placeholder='Page Title' class="form-control" required>
+                </div>
+
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="href" placeholder="Href" required>
+                </div>
+
+
+                <div class="col-md-12">
+                    <textarea class="form-control" name="content" id="text-field" placeholder='Page Content' required></textarea>
+                </div>
+
+                <div class="col-12 submit ">
+                    <button type="submit" class="btn btn-success mt-2" name="add">Create Page</button>
+                </div>
+            </form>
+ -->
 
 
 
