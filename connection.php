@@ -59,4 +59,4 @@ function getall1($getalldata1)
   return $resultall;
 };
 
-getall1('basic_setting');
+// getall1('basic_setting');

@@ -1,3 +1,4 @@
+
 <footer id="footer" class="footer position-relative">
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d756.280109696426!2d78.28416936955642!3d30.090079658806705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39093e06f6a6281d%3A0x76564b96e2aa96f1!2sAvas%20Vikas%20Colony%2C%20Rishikesh%2C%20Uttarakhand%20249201!5e1!3m2!1sen!2sin!4v1724390545146!5m2!1sen!2sin" frameborder="0" style="border:0; width: 100%; height: 280px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
@@ -21,16 +22,16 @@
 
           <ul class="list-unstyled float-start me-5">
 
-            <?php
-            foreach ($navigation as $links) { ?>
+            <!-- <?php
+                  foreach ($navigation as $links) { ?>
               <a id="link" class="nav active" href=" <?php echo $links['href'] ?>"> <?php echo $links['navbar_links'] ?></a>
               </li>
-            <?php } ?>
-
-            <!-- <?php foreach ($allPages as $page) { ?>
-                <a id="link" class="nav active" href="<?php echo $page['href']; ?>"><?php echo $page['navbar_links']; ?></a>
-              </li>
             <?php } ?> -->
+
+            <?php foreach ($allPages as $page) { ?>
+              <a id="link" class="nav active" href="<?php echo $page['href']; ?>"><?php echo $page['navbar_links']; ?></a>
+              </li>
+            <?php } ?>
 
           </ul>
         </div>
@@ -79,6 +80,8 @@
       </div>
 
     </div>
+    <p>&copy; <?php echo date('Y'); ?> Gym Website. All rights reserved.</p>
+
   </div>
 </footer>
 </body>

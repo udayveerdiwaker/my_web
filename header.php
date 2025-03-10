@@ -1,22 +1,21 @@
 <?php
 include 'connection.php';
 // $navigation = getall('navigationbar');
-$navigation = getall('navigationbar');
-// print_r($navigation);
+// $navigation = getall('navigationbar');
+// // print_r($navigation);
 
-$page_name = array();
+// $page_name = array();
 
-foreach ($navigation as $nav) {
-    $page_name[$nav['navbar_links']] = $nav;
+// foreach ($navigation as $nav) {
+//     $page_name[$nav['navbar_links']] = $nav;
 
 
-    //   print_r($page_name);
-}
+//   print_r($page_name);
+// }
 
 // exit;
 // echo $navigation['navbar_links'];
 // $categories = getall('profession_categories');
-$settings = getall1('basic_setting');
 
 // $setting = getall('basic_setting');
 // print_r($navigation);
@@ -40,10 +39,11 @@ if (isset($_POST['subscribe'])) {
 
     header("Location: http://localhost/my_web/home.php");
 }
-// $href = isset($_GET['page']) ? $_GET['page'] : ' ';
-// $result = $conn->query("SELECT * FROM navigationbar WHERE href='$href'");
-// $allPages = $conn->query("SELECT * FROM navigationbar")->fetch_all(MYSQLI_ASSOC);
+$href = isset($_GET['page']) ? $_GET['page'] : ' ';
+$result = $conn->query("SELECT * FROM navigationbar WHERE href='$href'");
+$allPages = $conn->query("SELECT * FROM navigationbar")->fetch_all(MYSQLI_ASSOC);
 
+$settings = getall1('basic_setting');
 
 ?>
 <!DOCTYPE html>
@@ -64,63 +64,65 @@ if (isset($_POST['subscribe'])) {
 
     <title>Document</title>
 </head>
-<header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid  position-relative d-flex align-items-center justify-content-between">
-        <nav id="navbar" class="navbar navbar-default navbar-expand-lg ">
-            <div class="container-fluid">
-                <div class="logo">
-                    <a class="navbar-brand text-white fs-1" href="home.php">
-                        <img src="<?php echo 'image/' . $settings['logo'] ?>" style="width: 70px; border-radius: 5px;">
+
+<body>
+    <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid  position-relative d-flex align-items-center justify-content-between">
+            <nav id="navbar" class="navbar navbar-default navbar-expand-lg ">
+                <div class="container-fluid">
+                    <div class="logo">
+                        <a class="navbar-brand text-white fs-1" href="home.php">
+                            <img src="<?php echo 'image/' . $settings['logo'] ?>" style="width: 70px; border-radius: 5px;">
 
 
-                        <!-- <?php foreach ($settings as $setting) : ?>
+                            <!-- <?php foreach ($settings as $setting) : ?>
                             <img src="image/<?php echo $setting['logo']; ?>" alt="Site Logo" width="100">
                         <?php endforeach; ?> -->
-                    </a>
-                </div>
-                <button class="navbar-toggler bg-info text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end " id="navbarTogglerDemo03">
-                    <ul class="navbar-nav">
-                        <?php
-                        foreach ($navigation as $links) { ?>
+                        </a>
+                    </div>
+                    <button class="navbar-toggler bg-info text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end " id="navbarTogglerDemo03">
+                        <ul class="navbar-nav">
+                            <!-- <?php
+                                    foreach ($navigation as $links) { ?>
                             <li class="nav-item p-3 d-flex  ">
                                 <a id="link" class="nav active" href=" <?php echo $links['href'] ?>"> <?php echo $links['navbar_links'] ?></a>
                             </li>
-                        <?php } ?>
-
-                        <!-- <?php foreach ($allPages as $page) { ?>
-                            <li class="nav-item">
-                                <a id="link" class="nav active" href="header.php?page=<?php echo $page['href']; ?>"><?php echo $page['navbar_links']; ?></a>
-                            </li>
                         <?php } ?> -->
 
+                            <?php foreach ($allPages as $page) { ?>
+                                <li class="nav-item">
+                                    <a id="link" class="nav active" href="<?php echo $page['href']; ?>"><?php echo $page['navbar_links']; ?></a>
+                                </li>
+                            <?php } ?>
 
-                        <!-- <?php
-                        //  while ($page = $allPages->fetch_assoc()) {
-                             ?>
+
+                            <!-- <?php
+                                    //  while ($page = $allPages->fetch_assoc()) {
+                                    ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="index.php?page=<?php 
-                                // echo $allPages['href'];
-                                 ?>">
-                                    <?php 
+                                <a class="nav-link" href="index.php?page=<?php
+                                                                            // echo $allPages['href'];
+                                                                            ?>">
+                                    <?php
                                     // echo $allPages['navbar_links']; 
                                     ?>
                             </a>
                             </li>
                         <?php
                         //  }
-                         ?> -->
+                        ?> -->
 
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </div>
-</header>
+            </nav>
+        </div>
+    </header>
 
-<!-- <section class="section">
+    <!-- <section class="section">
     <div class="container section-title aos-init aos-animate " data-aos="fade-up">
 
      
@@ -133,7 +135,4 @@ if (isset($_POST['subscribe'])) {
         // }
         ?>
     </div>
-</section>
-<?php
-// include 'footer.php';
-?> -->
+</section>-->
