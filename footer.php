@@ -22,16 +22,16 @@
 
           <ul class="list-unstyled float-start me-5">
 
-            <!-- <?php
+            <?php
                   foreach ($navigation as $links) { ?>
               <a id="link" class="nav active" href=" <?php echo $links['href'] ?>"> <?php echo $links['navbar_links'] ?></a>
               </li>
-            <?php } ?> -->
+            <?php } ?>
 
-            <?php foreach ($allPages as $page) { ?>
+            <!-- <?php foreach ($allPages as $page) { ?>
               <a id="link" class="nav active" href="<?php echo $page['href']; ?>"><?php echo $page['navbar_links']; ?></a>
               </li>
-            <?php } ?>
+            <?php } ?> -->
 
           </ul>
         </div>

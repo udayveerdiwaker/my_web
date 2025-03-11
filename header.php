@@ -1,17 +1,18 @@
 <?php
 include 'connection.php';
 // $navigation = getall('navigationbar');
-// $navigation = getall('navigationbar');
-// // print_r($navigation);
+$navigation = getall('navigationbar');
+// print_r($navigation);
 
-// $page_name = array();
+$page_name = array();
 
-// foreach ($navigation as $nav) {
-//     $page_name[$nav['navbar_links']] = $nav;
+foreach ($navigation as $nav) {
+    $page_name[$nav['navbar_links']] = $nav;
 
 
-//   print_r($page_name);
-// }
+    //   print_r($page_name);
+}
+$settings = getall1('basic_setting');
 
 // exit;
 // echo $navigation['navbar_links'];
@@ -39,11 +40,10 @@ if (isset($_POST['subscribe'])) {
 
     header("Location: http://localhost/my_web/home.php");
 }
-$href = isset($_GET['page']) ? $_GET['page'] : ' ';
-$result = $conn->query("SELECT * FROM navigationbar WHERE href='$href'");
-$allPages = $conn->query("SELECT * FROM navigationbar")->fetch_all(MYSQLI_ASSOC);
+// $href = isset($_GET['page']) ? $_GET['page'] : ' ';
+// $result = $conn->query("SELECT * FROM navigationbar WHERE href='$href'");
+// $allPages = $conn->query("SELECT * FROM navigationbar")->fetch_all(MYSQLI_ASSOC);
 
-$settings = getall1('basic_setting');
 
 ?>
 <!DOCTYPE html>
@@ -85,18 +85,18 @@ $settings = getall1('basic_setting');
                     </button>
                     <div class="collapse navbar-collapse justify-content-end " id="navbarTogglerDemo03">
                         <ul class="navbar-nav">
-                            <!-- <?php
-                                    foreach ($navigation as $links) { ?>
-                            <li class="nav-item p-3 d-flex  ">
-                                <a id="link" class="nav active" href=" <?php echo $links['href'] ?>"> <?php echo $links['navbar_links'] ?></a>
-                            </li>
-                        <?php } ?> -->
+                            <?php
+                            foreach ($navigation as $links) { ?>
+                                <li class="nav-item p-3 d-flex  ">
+                                    <a id="link" class="nav active" href=" <?php echo $links['href'] ?>"> <?php echo $links['navbar_links'] ?></a>
+                                </li>
+                            <?php } ?>
 
-                            <?php foreach ($allPages as $page) { ?>
+                            <!-- <?php foreach ($allPages as $page) { ?>
                                 <li class="nav-item">
                                     <a id="link" class="nav active" href="<?php echo $page['href']; ?>"><?php echo $page['navbar_links']; ?></a>
                                 </li>
-                            <?php } ?>
+                            <?php } ?> -->
 
 
                             <!-- <?php
