@@ -3,7 +3,7 @@ global $conn;
 $server = 'localhost';
 $user = 'root';
 $pass = '';
-$dbname = 'project';
+$dbname = 'project_cms';
 $conn = mysqli_connect($server, $user, $pass, $dbname);
 
 if ($conn) {
