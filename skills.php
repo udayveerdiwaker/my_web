@@ -15,6 +15,10 @@ $skills = $_GET['skills'];
     </div>
 </section>
 <!--
+
+
+
+
 <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
   <div class="row skills-content skills-animation">
     <div class="col-lg-6">
