@@ -6,14 +6,12 @@ $pass = '';
 $dbname = 'project_cms';
 $conn = mysqli_connect($server, $user, $pass, $dbname);
 
-if ($conn) {
-  // echo "Connection successfully";
-} else {
-  echo "Connection failed";
-}
-
-
-
+// Avoid echoing anything to prevent "headers already sent" error
+// if ($conn) {
+//   echo "Connection successfully";
+// } else {
+//   echo "Connection failed";  // ❌ Remove this
+// }
 
 function getall($getalldata)
 {
@@ -22,7 +20,7 @@ function getall($getalldata)
   $nav_links = mysqli_query($conn, $navbar);
   while ($links = mysqli_fetch_assoc($nav_links)) {
     $all_pages[] = $links;
-  } 
+  }
   return $all_pages;
 
 

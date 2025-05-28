@@ -52,77 +52,62 @@ if (isset($_POST['subscribe'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <meta name="description" content="Professional portfolio website">
+    <meta name="keywords" content="portfolio, web design, development">
     <meta name="robots" content="noindex, nofollow">
-    <link rel="icon" type="image/x-icon" href="icon.png">
+    <link rel="icon" type="image/x-icon" href="<?php echo 'image/' . $settings['logo'] ?>" class="rounded-circle">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="admin.css">
-
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <title>My Portfolio</title>
 </head>
+<style>
+    /* Base Styles */
+</style>
 
 <body>
-    <header id="header" class="header d-flex align-items-center fixed-top">
-        <div class="container-fluid  position-relative d-flex align-items-center justify-content-between">
-            <nav id="navbar" class="navbar navbar-default navbar-expand-lg ">
-                <div class="container-fluid">
-                    <div class="logo">
-                        <a class="navbar-brand text-white fs-1" href="home.php">
-                            <img src="<?php echo 'image/' . $settings['logo'] ?>" style="width: 70px; border-radius: 5px;">
-
-
-                            <!-- <?php foreach ($settings as $setting) : ?>
-                            <img src="image/<?php echo $setting['logo']; ?>" alt="Site Logo" width="100">
-                        <?php endforeach; ?> -->
-                        </a>
-                    </div>
-                    <button class="navbar-toggler bg-info text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end " id="navbarTogglerDemo03">
-                        <ul class="navbar-nav">
-                            <?php
-                            foreach ($navigation as $links) { ?>
-                                <li class="nav-item p-3 d-flex  ">
-                                    <a id="link" class="nav active" href=" <?php echo $links['href'] ?>"> <?php echo $links['navbar_links'] ?></a>
-                                </li>
-                            <?php } ?>
-
-                            <!-- <?php foreach ($allPages as $page) { ?>
-                                <li class="nav-item">
-                                    <a id="link" class="nav active" href="<?php echo $page['href']; ?>"><?php echo $page['navbar_links']; ?></a>
-                                </li>
-                            <?php } ?> -->
-
-
-                            <!-- <?php
-                                    //  while ($page = $allPages->fetch_assoc()) {
-                                    ?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.php?page=<?php
-                                                                            // echo $allPages['href'];
-                                                                            ?>">
-                                    <?php
-                                    // echo $allPages['navbar_links']; 
-                                    ?>
+    <header id="header" class="header fixed-top">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <div class="container-fluid">
+                            <a class="navbar-brand" href="home.php">
+                                <img src="<?php echo 'image/' . $settings['logo'] ?>" alt="Logo" class="logo-img">
+                                <span class="brand-name">Portfolio</span>
                             </a>
-                            </li>
-                        <?php
-                        //  }
-                        ?> -->
 
-                        </ul>
-                    </div>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                                <i class="bi bi-list"></i>
+                            </button>
+
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav ms-auto">
+                                    <?php foreach ($navigation as $links): ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="<?php echo $links['href'] ?>">
+                                                <?php echo $links['navbar_links'] ?>
+                                                <span class="nav-underline"></span>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                    <!-- <li class="nav-item">
+                                        <a class="nav-link cta-button" href="#contact">Hire Me</a>
+                                    </li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
                 </div>
-            </nav>
+            </div>
         </div>
     </header>
 
-    <!-- <section class="section">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html> <!-- <section class="section">
     <div class="container section-title aos-init aos-animate " data-aos="fade-up">
 
      

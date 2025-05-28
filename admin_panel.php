@@ -1,145 +1,151 @@
 <?php
 include 'connection.php';
-
-$sql = "SELECT `id`, `navbar_links`, `body` FROM `navigationbar` ";
-$result = mysqli_query($conn, $sql);
-$rows = mysqli_fetch_assoc($result);
-// print_r($rows);
-// exit();
-
-
-// $id = $_GET['id'];
-// if(isset($id));
-// echo ($id);
-// exit;
-if (isset($_GET['id'])) {
-  $id = intval($_GET['id']); // Prevent SQL injection
-} else {
-  $id = 0;
+session_start();
+if (!isset($_SESSION["user"])) {
+  header("Location: signin.php");
+  exit();
 }
-
-$navbar_link = "SELECT * FROM `navigationbar`  WHERE `id` = '$id' ";
-$navigation = mysqli_query($conn, $navbar_link);
-$nav_all = mysqli_fetch_assoc($navigation);
-// print_r($rows);
-// exit();
-
-
-if (isset($_POST['update'])) {
-  $navbar_links = $_POST['navbar_links'];
-  $text = $_POST['text'];
-  $update = "UPDATE `navigationbar` SET `navbar_links` = '$navbar_links', `body`= '$text' WHERE `id` = '$id' ";
-  $result = mysqli_query($conn, $update);
-  // print_r($result);
-  // header("location:http://localhost/admin_panel/navigation_table.php");
-}
-
-// category
-$profession_table = "SELECT `id`, `profession` FROM `profession_categories` ";
-$tableresult = mysqli_query($conn, $profession_table);
-// $profession = mysqli_fetch_assoc($tableresult);
-// print_r($profession);
-// exit();
-if ("") {
-  // header("location:profession_category_table.php");
-}
-
-if (isset($_POST['submit'])) {
-  $profession = $_POST['profession'];
-  $sql1 = "INSERT INTO `profession_categories` (`profession`) VALUE ('$profession')";
-  mysqli_query($conn, $sql1);
-  // header("location:http://localhost/admin_panel/profession_category_table.php");
-}
-
-// $id = $_GET['id'];
-// echo($id);
-
-
-$sql = "SELECT * FROM `profession_categories`  WHERE `id` = '$id' ";
-$result = mysqli_query($conn, $sql);
-$rows = mysqli_fetch_assoc($result);
-// print_r($rows);  
-// exit();
-
-if (isset($_POST['update'])) {
-  $profssion_category = $_POST['profssion_category'];
-  $update = "UPDATE `profession_categories` SET `profession`='$profssion_category' WHERE `id`= '$id' ";
-  $category_result = mysqli_query($conn, $update);
-  // print_r($category_result);
-  // header("location:http://localhost/admin_panel/profession_category_table.php");
-}
-
-//setting 
-$Setting = "SELECT `id`, `first_name`, `email`, `number`, `images`,`logo` FROM `basic_setting` ";
-$settingresult = mysqli_query($conn, $Setting);
-$setting = mysqli_fetch_assoc($settingresult);
-// print_r($setting);
-// exit();
-if ("") {
-  header("location:setting_table.php");
-}
-
-$Setting = "SELECT * FROM `basic_setting`  WHERE `id` = '$id' ";
-$settingresult = mysqli_query($conn, $Setting);
-$settings = mysqli_fetch_assoc($settingresult);
-// print_r($rows);
-// exit();
-
-#Get Navbar Name From DB
-if (isset($_POST['submit'])) {
-  $first_name = $_POST['first_name'];
-  $email = $_POST['email'];
-  $number = $_POST['number'];
-  $uploadimage = $_FILES["images"]["name"];
-  $uploadlogo = $_FILES['logo']['name'];
-
-  $update = "UPDATE `basic_setting` SET `first_name`='$first_name',`email`='$email',`number`='$number',`images`='$uploadimage',`logo`='$uploadlogo' WHERE `id` = '$id' ";
-  mysqli_query($conn, $update);
-
-
-  $tempname = $_FILES["images"]["tmp_name"];
-  $folder = 'image/' . $uploadimage;
-  move_uploaded_file($tempname, $folder);
-
-  $tempname = $_FILES["logo"]["tmp_name"];
-  $folder = 'image/' . $uploadlogo;
-  move_uploaded_file($tempname, $folder);
-  // header("Location: http://localhost/my_web/setting_table.php");
-}
-
-
-// include 'config.php'; // Ensure you have a database connection
-
 ?>
 
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="auto">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="icon.png">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <title>Portfolio Admin</title>
+  <link rel="icon" type="image/x-icon" href="s.jpeg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="admin_panel.css">
-  <title>Document</title>
 </head>
 
 <body>
-  <nav class="menu bg-secondary " tabindex="0">
-    <div class="smartphone-menu-trigger"></div>
-    <header class="avatar">
-      <img src="s.jpeg" height="100px" />
-      <h2 class="text-info">Shiva Diwaker</h2>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.php">
+        <img src="s.jpeg" alt="Admin">
+      </a>
+      <span class="fw-bold ms-2">Portfolio Admin</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" href="dashboard.php">
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="navigation_table.php">
+            <i class="bi bi-chevron-double-right"></i>
+            <span>Navigation</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="profession_category_table.php">
+            <i class="bi bi-briefcase"></i>
+            <span>Professions</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="setting_table.php">
+            <i class="bi bi-gear"></i>
+            <span>Settings</span>
+          </a>
+        </li>
+
+        <li class="nav-item mt-4">
+          <a class="nav-link" href="logout.php">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <div class="main-content">
+    <!-- Topbar -->
+    <header class="topbar sticky-top">
+      <div class="container-fluid d-flex align-items-center justify-content-between px-4" style="height: 100%;">
+        <button class="btn d-lg-none" id="sidebarToggle">
+          <i class="bi bi-list" style="font-size: 1.5rem;"></i>
+        </button>
+
+        <div class="d-flex align-items-center">
+          <div class="theme-toggle me-3" id="themeToggle">
+            <i class="bi bi-moon-fill"></i>
+          </div>
+
+          <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
+              <img src="s.jpeg" alt="Admin" width="36" height="36" class="rounded-circle me-2">
+              <span class="d-none d-md-inline">Shiva Diwaker</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="home.php" target="_blank"><i class="bi bi-person me-2"></i> Profile</a></li>
+              <li><a class="dropdown-item" href="setting_table.php"><i class="bi bi-gear me-2"></i> Settings</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="logout.php"><i class="bi bi-box-arrow-right me-2"></i> Sign out</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </header>
-    <ul>
-      <li><a href="dashboard.php">Dashboard</a></li>
-      <li><a href="navigation_table.php">Header</a></li>
-      <li><a href="profession_category_table.php">profession Category</a></li>
-      <li><a href="setting_table.php">website basic settings</a></li>
-    </ul>
-  </nav>
+
+
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Theme toggle functionality
+      const themeToggle = document.getElementById('themeToggle');
+      const html = document.documentElement;
+
+      // Check for saved theme preference
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      html.setAttribute('data-bs-theme', savedTheme);
+
+      // Update icon based on current theme
+      updateThemeIcon(savedTheme);
+
+      themeToggle.addEventListener('click', function() {
+        const currentTheme = html.getAttribute('data-bs-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        html.setAttribute('data-bs-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+
+        updateThemeIcon(newTheme);
+      });
+
+      function updateThemeIcon(theme) {
+        const icon = themeToggle.querySelector('i');
+        icon.className = theme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+      }
+
+      // Toggle sidebar
+      document.getElementById('sidebarToggle').addEventListener('click', function() {
+        document.querySelector('.sidebar').classList.toggle('show');
+      });
+    </script>

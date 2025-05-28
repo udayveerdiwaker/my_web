@@ -1,125 +1,76 @@
 <?php
-include "admin_panel.php";
+ob_start();
 
+include 'admin_panel.php';
 
 if (isset($_POST['submit'])) {
-    $navlinks = $_POST['navlinks'];
-    $text = $_POST['text'];
-    $href = $_POST['href'];
+  $navlinks = $conn->real_escape_string($_POST['navlinks']);
+  // $text = $conn->real_escape_string($_POST['text']);
+  $href = $conn->real_escape_string($_POST['href']);
 
-    $escaped_navlinks = $conn->real_escape_string($_POST['navlinks']);
-    $escaped_text = $conn->real_escape_string($_POST['text']);
-    $escaped_href = $conn->real_escape_string($_POST['href']);
+  // $insert = "INSERT INTO `navigationbar` (`navbar_links`,`body`,`href`) VALUES ('$navlinks','$text','$href')";
 
-    $insert = "INSERT INTO `navigationbar` (`navbar_links`,`body`,`href`) VALUES ('$escaped_navlinks','$escaped_text','$escaped_href') ";
-    mysqli_query($conn, $insert);
+  $insert = "INSERT INTO `navigationbar` (`navbar_links`,`href`) VALUES ('$navlinks','$href')";
+  mysqli_query($conn, $insert);
 
-    header("Location: http://localhost/my_web/navigation_table.php");
+  header("Location: navigation_table.php");
+  exit();
 }
-
-// if (isset($_POST['add'])) {
-//     $title = $_POST['title'];
-//     $content = $_POST['content'];
-//     $href = strtolower(str_replace(' ', '-', $title));
-
-//     $insert = "INSERT INTO `navigationbar` (`navbar_links`,`body`,`href`) VALUES ('$title','$content','$href') ";
-//     mysqli_query($conn, $insert);
-
-
-//     // $conn->query("INSERT INTO `navigationbar` (`navbar_links`,`body`,`href`) VALUES ('$title','$content','$href')");
-//     header("Location: http://localhost/my_web/navigation_table.php");
-// }
 ?>
 
 
-
 <style>
-    .container {
-        width: 80%;
-        border-radius: 10px;
-        color: black;
-
-    }
+  .btn-submit {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+  }
 </style>
 
-
-
-
-
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="container border border-4 border-warning">
-            <p class="display-6 text-info text-center"><b>Create a New Page</b></p>
-            <form action="navigation_form.php" method="POST" enctype="multipart/form-data" class="row g-3">
-                <div class="col-md-4">
-                    <label class="form-label ">Add navigation Links</label>
-                    <input type="text" class="form-control" name="navlinks">
-                </div>
-
-                <div class="col-md-4">
-                    <label class="form-label ">Add Href Links</label>
-                    <input type="text" class="form-control" name="href">
-                </div>
-
-                <div class="col-md-12">
-                    <label for="text-field" class="pb-2">Add text</label>
-                    <textarea class="form-control" name="text" id="text-field"></textarea>
-                </div>
-
-                <div class="col-12 submit ">
-                    <button type="submit" class="btn btn-outline-info" name="submit">Submit</button>
-                </div>
-            </form>
-
-            <!-- <h2 class="mt-3">Create a New Page</h2> -->
-            <!-- <form action="navigation_form.php" method="POST" enctype="multipart/form-data" class="row g-3">
-                <div class="col-md-4">
-                    <input type='text' name='title' placeholder='Page Title' class="form-control" required>
-                </div>
-
-                <div class="col-md-4">
-                    <input type="text" class="form-control" name="href" placeholder="Href" required>
-                </div>
-
-
-                <div class="col-md-12">
-                    <textarea class="form-control" name="content" id="text-field" placeholder='Page Content' required></textarea>
-                </div>
-
-                <div class="col-12 submit ">
-                    <button type="submit" class="btn btn-success mt-2" name="add">Create Page</button>
-                </div>
-            </form>
- -->
-
-
-
-
-
-            <!-- links form -->
-
+<!-- Page Content -->
+<div class="container-fluid px-4 py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="d-sm-flex align-items-center justify-content-between">
+          <h1 class="h3 mb-0">Add Navigation Link</h1>
+          <a href="navigation_table.php" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left me-2"></i> Back to List
+          </a>
         </div>
-        <!-- row end -->
+      </div>
+
+      <!-- Form Card -->
+      <div class="card form-card">
+        <form action="" method="POST" class="row g-3">
+          <div class="col-md-6">
+            <label for="navlinks" class="form-label">Link Text</label>
+            <input type="text" class="form-control" id="navlinks" name="navlinks" required>
+            <div class="form-text">The text that will appear in the navigation</div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="href" class="form-label">URL</label>
+            <input type="text" class="form-control" id="href" name="href" required>
+            <div class="form-text">The destination URL (e.g., about.html)</div>
+          </div>
+
+          <!-- <div class="col-12">
+                <label for="text" class="form-label">Content</label>
+                <textarea class="form-control" id="text" name="text" rows="5"></textarea>
+              </div> -->
+
+          <div class="col-12 text-end mt-4">
+            <button type="submit" class="btn btn-primary btn-submit" name="submit">
+              <i class="bi bi-save me-2"></i> Save Link
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-    <!--container end -->
+  </div>
 </div>
-
-<!-- <form action="navigation_form.php" method="POST" enctype="multipart/form-data" class="row g-3">
-                <div class="col-md-4">
-            <label class="form-label ">Add navigation Links</label>
-            <input type="text" class="form-control" name="navlinks">
-        </div>
-
-        <div class="col-md-4">
-            <label class="form-label ">Add Href Links</label>
-            <input type="text" class="form-control" name="href">
-        </div>
-
-        <div class="col-md-12">
-            <label for="text-field" class="pb-2">Add text</label>
-            <textarea class="form-control" name="text" id="text-field"></textarea>
-        </div>
-        
-        <input type="submit" value="Submit">
-                </form> -->
+<?php
+ob_end_flush(); // यह buffer clear करता है
+?>
