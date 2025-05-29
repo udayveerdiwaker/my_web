@@ -1,12 +1,12 @@
 <footer id="footer" class="footer">
   <!-- Google Maps Section -->
   <div class="map-container">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d756.280109696426!2d78.28416936955642!3d30.090079658806705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39093e06f6a6281d%3A0x76564b96e2aa96f1!2sAvas%20Vikas%20Colony%2C%20Rishikesh%2C%20Uttarakhand%20249201!5e1!3m2!1sen!2sin!4v1724390545146!5m2!1sen!2sin" 
-            frameborder="0" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d756.280109696426!2d78.28416936955642!3d30.090079658806705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39093e06f6a6281d%3A0x76564b96e2aa96f1!2sAvas%20Vikas%20Colony%2C%20Rishikesh%2C%20Uttarakhand%20249201!5e1!3m2!1sen!2sin!4v1724390545146!5m2!1sen!2sin"
+      frameborder="0"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
     </iframe>
     <div class="map-overlay"></div>
   </div>
@@ -20,12 +20,12 @@
           <div class="footer-widget">
             <h3 class="footer-title">About Me</h3>
             <p class="footer-text">
-              Hi, I'm Shiva Diwaker. I'm a passionate developer ready to bring your ideas to life. 
+              Hi, I'm Shiva Diwaker. I'm a passionate developer ready to bring your ideas to life.
               Let's connect and create something amazing together.
             </p>
-            <a href="#about" class="footer-link">Learn more
-               <!-- <i class="bi bi-arrow-right"></i> -->
-          </a>
+            <a href="http://localhost/my_web/about.php?about=About" class="footer-link">Learn more
+              <!-- <i class="bi bi-arrow-right"></i> -->
+            </a>
           </div>
         </div>
 
@@ -56,25 +56,25 @@
               <a href="#" class="social-icon facebook" target="_blank">
                 <i class="bi bi-facebook"></i>
               </a>
-              <a href="https://www.instagram.com/shiva__diwaker" class="social-icon instagram" target="_blank">
+              <a href="https://www.instagram.com/shiva__diwaker/" class="social-icon instagram" target="_blank">
                 <i class="bi bi-instagram"></i>
               </a>
-              <a href="https://web.skype.com/" class="social-icon skype" target="_blank">
-                <i class="bi bi-skype"></i>
+              <a href="https://teams.live.com/v2" class="social-icon teams" target="_blank">
+                <i class="bi bi-microsoft-teams"></i>
               </a>
-              <a href="#" class="social-icon linkedin" target="_blank">
+              <a href="https://www.linkedin.com/in/udayveer-diwaker-b96892356/" class="social-icon linkedin" target="_blank">
                 <i class="bi bi-linkedin"></i>
               </a>
-              <a href="#" class="social-icon github" target="_blank">
+              <a href="https://github.com/udayveerdiwaker" class="social-icon github" target="_blank">
                 <i class="bi bi-github"></i>
               </a>
             </div>
             <div class="contact-info mt-3">
               <p class="footer-text mb-1">
-                <i class="bi bi-envelope me-2"></i> shivadiwaker@example.com
+                <i class="bi bi-envelope me-2"></i> <?php echo $settings['email'] ?>
               </p>
               <p class="footer-text">
-                <i class="bi bi-phone me-2"></i> +91 1234567890
+                <i class="bi bi-phone me-2"></i> +91 <?php echo $settings['number'] ?>
               </p>
             </div>
           </div>

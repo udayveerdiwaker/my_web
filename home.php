@@ -52,8 +52,8 @@ $result = $conn->query("SELECT * FROM categories ORDER BY id DESC");
           </div>
 
           <div class="hero-buttons">
-            <a href="#contact" class="btn btn-primary">Hire Me</a>
-            <a href="#portfolio" class="btn btn-outline">View Work</a>
+            <a href="http://localhost/my_web/contact.php?contact=Contact" class="btn btn-primary">Hire Me</a>
+            <a href="http://localhost/my_web/resume.php?resume=Resume" class="btn btn-outline">View Work</a>
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@ $result = $conn->query("SELECT * FROM categories ORDER BY id DESC");
   </div>
 
 
-  
+
 </section>
 
 <?php include 'footer.php'; ?>

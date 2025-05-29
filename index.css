@@ -279,6 +279,7 @@ a {
 }
 
 @keyframes blink {
+
   0%,
   100% {
     opacity: 1;
@@ -288,67 +289,6 @@ a {
     opacity: 0;
   }
 }
-/* 
-.profession-container {
-  display: flex;
-  align-items: center;
-  height: 50px;
-  margin-bottom: 30px;
-}
-
-.static-text {
-  font-size: 1.5rem;
-  color: var(--default-color);
-  font-weight: 500;
-  margin-right: 15px;
-}
-
-.dynamic-text {
-  height: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-.profession-item {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--accent-color);
-  position: relative;
-  top: 0;
-  animation: slide 12s steps(4) infinite;
-}
-
-@keyframes slide {
-  100% {
-    top: -400%;
-  }
-}
-
-.profession-item::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: var(--background-color);
-  border-left: 2px solid var(--accent-color);
-  animation: typing 3s steps(10) inherit;
-}
-
-@keyframes typing {
-  40%,
-  60% {
-    left: calc(100% + 15px);
-  }
-
-  100% {
-    left: 0;
-  }
-} */
-
-
-
-
 
 .profession-container {
   display: flex;
@@ -407,27 +347,35 @@ a {
   0% {
     top: 0;
   }
+
   20% {
     top: 0;
   }
+
   25% {
     top: -70px;
   }
+
   45% {
     top: -70px;
   }
+
   50% {
     top: -140px;
   }
+
   70% {
     top: -140px;
   }
+
   75% {
     top: -210px;
   }
+
   95% {
     top: -210px;
   }
+
   100% {
     top: -280px;
   }
@@ -439,10 +387,12 @@ a {
     left: 0;
     width: 0;
   }
+
   50% {
     left: 100%;
     width: 0;
   }
+
   100% {
     left: 100%;
     width: 0;
@@ -451,10 +401,12 @@ a {
 
 /* Cursor blink animation */
 @keyframes blink {
+
   0%,
   100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0;
   }
@@ -466,40 +418,51 @@ a {
     height: 50px;
     padding: 0 20px;
   }
+
   .static-text,
   .profession-item {
     font-size: 1.4rem;
   }
+
   .dynamic-text,
   .profession-item {
     height: 50px;
     line-height: 50px;
   }
+
   @keyframes slide {
     0% {
       top: 0;
     }
+
     20% {
       top: 0;
     }
+
     25% {
       top: -50px;
     }
+
     45% {
       top: -50px;
     }
+
     50% {
       top: -100px;
     }
+
     70% {
       top: -100px;
     }
+
     75% {
       top: -150px;
     }
+
     95% {
       top: -150px;
     }
+
     100% {
       top: -200px;
     }
@@ -565,6 +528,7 @@ a {
 }
 
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0);
@@ -584,11 +548,9 @@ a {
 .shape-1 {
   width: 300px;
   height: 300px;
-  background: linear-gradient(
-    135deg,
-    rgba(52, 191, 73, 0.1) 0%,
-    rgba(52, 191, 73, 0) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(52, 191, 73, 0.1) 0%,
+      rgba(52, 191, 73, 0) 100%);
   top: -50px;
   right: -50px;
 }
@@ -596,11 +558,9 @@ a {
 .shape-2 {
   width: 200px;
   height: 200px;
-  background: linear-gradient(
-    45deg,
-    rgba(33, 37, 41, 0.1) 0%,
-    rgba(33, 37, 41, 0) 100%
-  );
+  background: linear-gradient(45deg,
+      rgba(33, 37, 41, 0.1) 0%,
+      rgba(33, 37, 41, 0) 100%);
   bottom: -30px;
   left: -30px;
 }
@@ -707,6 +667,8 @@ a {
   --bs-gutter-z: 0.8rem;
 }
 
+
+
 /* Footer Styles */
 .footer {
   position: relative;
@@ -733,11 +695,9 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(33, 37, 41, 0.1),
-    rgba(33, 37, 41, 0.2)
-  );
+  background: linear-gradient(to bottom,
+      rgba(33, 37, 41, 0.1),
+      rgba(33, 37, 41, 0.2));
   pointer-events: none;
 }
 
@@ -828,40 +788,36 @@ a {
 }
 
 .telegram:hover {
-  background-color: var(--accent-color);
+  /* background-color: var(--accent-color); */
+  background-color: #0088cc;
   color: white;
 }
 
 .facebook:hover {
-  background-color: var(--accent-color);
+  background-color: #1877F2;
   color: white;
 }
 
 .instagram:hover {
-  background: linear-gradient(
-    45deg,
-    #405de6,
-    #5851db,
-    #833ab4,
-    #c13584,
-    #e1306c,
-    #fd1d1d
-  );
+  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
   color: white;
 }
 
-.skype:hover {
-  background-color: var(--accent-color);
+.teams:hover {
+  background: linear-gradient(135deg, #6b69d6, #464775);
+
   color: white;
 }
 
 .linkedin:hover {
-  background-color: var(--accent-color);
+  background: linear-gradient(135deg, #0A66C2, #004182);
+
   color: white;
 }
 
 .github:hover {
-  background-color: #333;
+ background: linear-gradient(135deg, #2d2d2d, #000000);
+
   color: white;
 }
 
