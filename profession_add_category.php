@@ -4,21 +4,27 @@ include 'admin_panel.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name']);
+
     if (!empty($name)) {
-        $stmt = $conn->prepare("INSERT INTO categories (name) VALUES (?)");
-        $stmt->bind_param("s", $name);
-        if ($stmt->execute()) {
+        // Escape user input for security
+        $name = mysqli_real_escape_string($conn, $name);
+
+        // Insert query
+        $sql = "INSERT INTO categories (name) VALUES ('$name')";
+
+        if (mysqli_query($conn, $sql)) {
             $_SESSION['success_message'] = "Category added successfully!";
             header("Location: profession_category_table.php");
             exit();
         } else {
-            $error = "Error adding category: " . $conn->error;
+            $error = "Error adding category: " . mysqli_error($conn);
         }
     } else {
         $error = "Category name cannot be empty";
     }
 }
 ?>
+
 <style>
     .add-card {
         border: none;

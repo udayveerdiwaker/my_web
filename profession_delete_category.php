@@ -4,15 +4,15 @@ include 'connection.php';
 // Process deletion if confirmed
 if (isset($_GET['id']) && isset($_GET['confirm']) && $_GET['confirm'] === 'yes') {
     $id = $_GET['id'];
-    
+
     if (!is_numeric($id)) {
         die("Invalid category ID");
     }
 
-    $stmt = $conn->prepare("DELETE FROM categories WHERE id=?");
-    $stmt->bind_param("i", $id);
-    
-    if ($stmt->execute()) {
+    $id = (int)$id; // Sanitize input
+
+    $sql = "DELETE FROM categories WHERE id = $id";
+    if (mysqli_query($conn, $sql)) {
         header("Location: profession_category_table.php?delete=success");
     } else {
         header("Location: profession_category_table.php?delete=error");
@@ -23,9 +23,11 @@ if (isset($_GET['id']) && isset($_GET['confirm']) && $_GET['confirm'] === 'yes')
 // Show confirmation UI
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    ?>
+?>
+
     <!DOCTYPE html>
     <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,51 +42,60 @@ if (isset($_GET['id'])) {
                 --gray: #6c757d;
                 --border: #dee2e6;
             }
+
             * {
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
             }
+
             body {
                 font-family: 'Inter', sans-serif;
-                background-color: rgba(0,0,0,0.03);
+                background-color: rgba(0, 0, 0, 0.03);
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 min-height: 100vh;
                 padding: 20px;
             }
+
             .modal {
                 background: white;
                 border-radius: 12px;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
                 width: 100%;
                 max-width: 420px;
                 overflow: hidden;
                 animation: fadeIn 0.3s ease-out;
             }
+
             .modal-header {
                 padding: 20px 24px;
                 border-bottom: 1px solid var(--border);
             }
+
             .modal-title {
                 font-size: 1.25rem;
                 font-weight: 600;
                 color: var(--dark);
             }
+
             .modal-body {
                 padding: 24px;
             }
+
             .modal-text {
                 color: var(--gray);
                 line-height: 1.5;
                 margin-bottom: 24px;
             }
+
             .modal-footer {
                 display: flex;
                 gap: 12px;
                 padding: 0 24px 24px;
             }
+
             .btn {
                 padding: 10px 16px;
                 border-radius: 8px;
@@ -96,32 +107,46 @@ if (isset($_GET['id'])) {
                 transition: all 0.2s;
                 border: none;
             }
+
             .btn-danger {
                 background: var(--danger);
                 color: white;
             }
+
             .btn-danger:hover {
                 background: #d90429;
                 transform: translateY(-1px);
             }
+
             .btn-secondary {
                 background: white;
                 color: var(--gray);
                 border: 1px solid var(--border);
             }
+
             .btn-secondary:hover {
                 background: var(--light);
                 transform: translateY(-1px);
             }
+
             @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(10px); }
-                to { opacity: 1; transform: translateY(0); }
+                from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
             }
+
             .warning-icon {
                 display: flex;
                 justify-content: center;
                 margin-bottom: 16px;
             }
+
             .warning-icon svg {
                 width: 48px;
                 height: 48px;
@@ -129,6 +154,7 @@ if (isset($_GET['id'])) {
             }
         </style>
     </head>
+
     <body>
         <div class="modal">
             <div class="modal-header">
@@ -141,7 +167,7 @@ if (isset($_GET['id'])) {
                     </svg>
                 </div>
                 <p class="modal-text">
-                    This will permanently delete the category and cannot be undone. 
+                    This will permanently delete the category and cannot be undone.
                     Are you sure you want to continue?
                 </p>
             </div>
@@ -151,8 +177,9 @@ if (isset($_GET['id'])) {
             </div>
         </div>
     </body>
+
     </html>
-    <?php
+<?php
     exit();
 }
 

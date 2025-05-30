@@ -71,8 +71,10 @@ include 'admin_panel.php';
         </thead>
         <tbody>
           <?php
-          $result = $conn->query("SELECT * FROM categories ORDER BY id DESC");
-          while ($row = $result->fetch_assoc()):
+          $query = "SELECT * FROM categories ORDER BY id DESC";
+          $result = mysqli_query($conn, $query);
+
+          while ($row = mysqli_fetch_assoc($result)):
           ?>
             <tr>
               <td><?php echo htmlspecialchars($row['id']); ?></td>
@@ -87,19 +89,16 @@ include 'admin_panel.php';
                     class="btn btn-sm btn-outline-primary action-btn">
                     <i class="bi bi-pencil"></i> Edit
                   </a>
-                  <!-- <a href="profession_delete_category.php?id=<?php echo $row['id']; ?>" 
-                       class="btn btn-sm btn-outline-danger action-btn"
-                       onclick="return confirm('Are you sure you want to delete this category?')">
-                      <i class="bi bi-trash"></i> Delete
-                    </a> -->
                   <a href="profession_delete_category.php?id=<?php echo $row['id']; ?>"
-                    class="btn btn-sm btn-outline-danger action-btn">
+                    class="btn btn-sm btn-outline-danger action-btn"
+                    onclick="return confirm('Are you sure you want to delete this category?')">
                     <i class="bi bi-trash"></i> Delete
                   </a>
                 </div>
               </td>
             </tr>
           <?php endwhile; ?>
+
         </tbody>
       </table>
     </div>

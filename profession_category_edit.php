@@ -13,14 +13,16 @@ $id = intval($_GET['id']); // Sanitize input
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name']);
     if (!empty($name)) {
-        $stmt = $conn->prepare("UPDATE categories SET name=? WHERE id=?");
-        $stmt->bind_param("si", $name, $id);
-        if ($stmt->execute()) {
+        $name = mysqli_real_escape_string($conn, $name);
+
+        $sql = "UPDATE categories SET name='$name' WHERE id=$id";
+
+        if (mysqli_query($conn, $sql)) {
             $_SESSION['success_message'] = "Category updated successfully!";
             header("Location: profession_category_table.php");
             exit();
         } else {
-            $error = "Error updating category: " . $conn->error;
+            $error = "Error updating category: " . mysqli_error($conn);
         }
     } else {
         $error = "Category name cannot be empty";
@@ -28,11 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Fetch category data
-$stmt = $conn->prepare("SELECT * FROM categories WHERE id=?");
-$stmt->bind_param("i", $id);
-$stmt->execute();
-$result = $stmt->get_result();
-$category = $result->fetch_assoc();
+$sql = "SELECT * FROM categories WHERE id=$id";
+$result = mysqli_query($conn, $sql);
+$category = mysqli_fetch_assoc($result);
 
 if (!$category) {
     $_SESSION['error_message'] = "Category not found!";

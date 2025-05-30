@@ -1,15 +1,20 @@
-<?php include 'header.php';
+<?php
+include 'header.php';
 $contact = $_GET['contact'];
 
 if (isset($_POST['submit'])) {
   $name = $_POST['name'];
   $email = $_POST['email'];
-  $contact = $_POST['contact'];
+  $Contact = $_POST['contact'];
   $subject = $_POST['subject'];
   $message = $_POST['message'];
-  $insert = "INSERT INTO `contact_data` (`name`, `email`, `contact`, `subject`, `message`) VALUES ('$name','$email','$contact','$subject','$message')";
+  $insert = "INSERT INTO `contact_data` (`name`, `email`, `contact`, `subject`, `message`) VALUES ('$name','$email','$Contact','$subject','$message')";
   mysqli_query($conn, $insert);
-  header('location: http://localhost/my_web/contact.php');
+
+  // Instead of redirecting, we'll set a session variable
+  $_SESSION['form_submitted'] = true;
+  // In your form submission handler:
+  header('location: http://localhost/my_web/contact.php?contact=Contact&submitted=true');
 }
 ?>
 <style>
@@ -315,6 +320,79 @@ if (isset($_POST['submit'])) {
       margin-top: 30px;
     }
   }
+
+  /* Popup Styles */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .popup-content {
+    background: var(--surface-color);
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+  }
+
+  .popup-overlay.active .popup-content {
+    transform: translateY(0);
+  }
+
+  .popup-icon {
+    font-size: 4rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+  }
+
+  .popup-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--heading-color);
+  }
+
+  .popup-content p {
+    color: var(--default-color);
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .popup-close-btn {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .popup-close-btn:hover {
+    background: var(--nav-hover-color);
+    transform: translateY(-3px);
+  }
 </style>
 <section id="contact" class="contact-section">
   <div class="container">
@@ -392,7 +470,7 @@ if (isset($_POST['submit'])) {
 
       <!-- Contact Form -->
       <div class="contact-form-card">
-        <form action="contact.php" method="post" class="contact-form">
+        <form action="" method="post" class="contact-form">
           <div class="form-row">
             <div class="form-group">
               <label for="name">Your Name</label>
@@ -434,7 +512,70 @@ if (isset($_POST['submit'])) {
         </form>
       </div>
     </div>
+    <!-- Thank You Popup -->
+    <div id="thankYouPopup" class="popup-overlay" style="display: none;">
+      <div class="popup-content">
+        <div class="popup-icon">
+          <i class="bi bi-check-circle-fill"></i>
+        </div>
+        <h3>Thank You!</h3>
+        <p>Your message has been sent successfully. I'll get back to you soon.</p>
+        <button class="popup-close-btn">Close</button>
+      </div>
+    </div>
 
+    <script>
+      // Show popup if form was submitted
+      <?php if (isset($_SESSION['form_submitted'])) { ?>
+        document.addEventListener('DOMContentLoaded', function() {
+          const popup = document.getElementById('thankYouPopup');
+          popup.style.display = 'flex';
+          setTimeout(() => {
+            popup.classList.add('active');
+          }, 100);
+
+          // Remove the session variable
+          <?php unset($_SESSION['form_submitted']); ?>
+        });
+      <?php } ?>
+
+      // Close popup functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const popup = document.getElementById('thankYouPopup');
+        const closeBtn = document.querySelector('.popup-close-btn');
+
+        if (closeBtn) {
+          closeBtn.addEventListener('click', function() {
+            popup.classList.remove('active');
+            setTimeout(() => {
+              popup.style.display = 'none';
+            }, 300);
+          });
+        }
+
+        // Close when clicking outside content
+        popup.addEventListener('click', function(e) {
+          if (e.target === popup) {
+            popup.classList.remove('active');
+            setTimeout(() => {
+              popup.style.display = 'none';
+            }, 300);
+          }
+        });
+      });
+      // Check for submitted parameter in URL
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('submitted')) {
+        const popup = document.getElementById('thankYouPopup');
+        popup.style.display = 'flex';
+        setTimeout(() => {
+          popup.classList.add('active');
+        }, 100);
+
+        // Remove the parameter from URL without reloading
+        history.replaceState(null, null, window.location.pathname);
+      }
+    </script>
     <!-- Map Section -->
     <div class="map-container">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d756.280109696426!2d78.28416936955642!3d30.090079658806705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39093e06f6a6281d%3A0x76564b96e2aa96f1!2sAvas%20Vikas%20Colony%2C%20Rishikesh%2C%20Uttarakhand%20249201!5e1!3m2!1sen!2sin!4v1724390545146!5m2!1sen!2sin"
