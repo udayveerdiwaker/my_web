@@ -1,6 +1,5 @@
 <?php include 'header.php';
-$result = $conn->query("SELECT * FROM categories ORDER BY id DESC");
-
+$result = mysqli_query($conn, "SELECT * FROM categories ORDER BY id DESC");
 ?>
 
 <section id="home" class="home-section">
@@ -32,21 +31,23 @@ $result = $conn->query("SELECT * FROM categories ORDER BY id DESC");
             <span class="static-text">I'm a</span>
             <div class="dynamic-text">
               <div class="profession-list">
-
                 <?php
+                // Assuming $conn is your mysqli connection object
+                $result = mysqli_query($conn, "SELECT * FROM categories ORDER BY id DESC");
 
-                // $categories = [
-                //   ['profession' => 'Web Developer'],
-                //   ['profession' => 'UI/UX Designer'],
-                //   ['profession' => 'Mobile Programmer'],
-                //   ['profession' => 'Freelancer']
-                // ];
-                foreach ($result as $category) {
+                if ($result) {
+                  while ($category = mysqli_fetch_assoc($result)) {
                 ?>
-                  <span class="profession-item"><?php echo $category['name'] ?></span>
+                    <span class="profession-item"><?php echo htmlspecialchars($category['name']); ?></span>
                 <?php
+                  }
+                } else {
+                  echo "Error in query: " . mysqli_error($conn);
                 }
                 ?>
+
+
+
               </div>
             </div>
           </div>
