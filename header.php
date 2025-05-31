@@ -73,11 +73,24 @@ if (isset($_POST['subscribe'])) {
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg">
                         <div class="container-fluid">
-                            <a class="navbar-brand" href="home.php">
-                                <img src="<?php echo 'image/' . $settings['logo'] ?>" alt="Logo" class="logo-img">
-                                <span class="brand-name">Portfolio</span>
-                            </a>
 
+                            <!-- <a class="navbar-brand" href="home.php">
+                                <div class="logo-container">
+                                    <img src="<?php echo 'image/' . $settings['logo'] ?>" alt="<?php echo $settings['first_name'] ?? 'Website Logo'; ?>" class="logo-img">
+                                    <div class="brand-name"><?php echo $settings['first_name'] ?? 'Brand Name'; ?></div>
+                                </div>
+                            </a> -->
+
+                            <a class="navbar-brand" href="home.php">
+                                <div class="logo-structure">
+                                    <div class="logo-text-container">
+                                        <!-- <img src="<?php echo 'image/' . $settings['logo'] ?>" alt="<?php echo $settings['first_name'] ?? 'Website Logo'; ?>" class="logo-img"> -->
+                                        <div class="brand-name">
+                                            <span class="brand-name-part"><?php echo htmlspecialchars($settings['first_name']); ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                                 <i class="bi bi-list"></i>
                             </button>
@@ -105,7 +118,7 @@ if (isset($_POST['subscribe'])) {
     </header>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
- <!-- <section class="section">
+    <!-- <section class="section">
     <div class="container section-title aos-init aos-animate " data-aos="fade-up">
 
      

@@ -119,22 +119,105 @@ body {
   transition: var(--transition);
 }
 
-.navbar-brand {
+/* .navbar-brand {
   font-family: var(--nav-font);
   font-weight: 700;
 }
 
 .logo-img {
-  width: 50px;
+  width: 200px;
   height: 50px;
   border-radius: 50%;
   margin-right: 10px;
   transition: var(--transition);
-}
+} */
 
-.brand-name {
+/* .brand-name {
   color: var(--nav-color);
   font-size: 1.5rem;
+} */
+
+/* ===== Enhanced Logo Using Your Color Variables ===== */
+.navbar-brand {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.logo-structure {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.logo-img {
+  width: 200px;
+  height: 50px;
+  margin-right: 10px;
+  transition: var(--transition);
+}
+
+/* Brand Name Styling */
+.brand-name {
+  display: flex;
+  align-items: center;
+  gap: 0.rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 1px;
+  color: var(--accent-color);
+}
+
+/* Hover Effects */
+.navbar-brand:hover {
+  background: linear-gradient(90deg, var(--nav-color), var(--accent-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .brand-name {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .brand-name {
+    font-size: 1.3rem;
+  }
+
+  .brand-tagline {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-brand {
+    padding: 0.3rem 0.6rem;
+  }
+
+  .brand-name {
+    font-size: 1.1rem;
+  }
+
+  .brand-tagline::before {
+    width: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .brand-name {
+    font-size: 1rem;
+  }
+
+  .brand-tagline {
+    font-size: 0.65rem;
+  }
 }
 
 .navbar-nav {
@@ -816,7 +899,7 @@ a {
 }
 
 .github:hover {
- background: linear-gradient(135deg, #2d2d2d, #000000);
+  background: linear-gradient(135deg, #2d2d2d, #000000);
 
   color: white;
 }
