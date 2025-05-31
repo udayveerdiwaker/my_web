@@ -127,7 +127,7 @@
               <a href="https://web.telegram.org/k/" class="social-icon telegram" target="_blank">
                 <i class="bi bi-telegram"></i>
               </a>
-              <a href="#" class="social-icon facebook" target="_blank">
+              <a href="https://www.facebook.com/profile.php?id=100073101880912" class="social-icon facebook" target="_blank">
                 <i class="bi bi-facebook"></i>
               </a>
               <a href="https://www.instagram.com/shiva__diwaker/" class="social-icon instagram" target="_blank">
