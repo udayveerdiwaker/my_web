@@ -449,21 +449,16 @@ if (isset($_POST['submit'])) {
           <a href="https://web.telegram.org/k/" class="social-link telegram " target="_blank">
             <i class="bi bi-telegram"></i>
           </a>
-          <a href="#" class="social-icon facebook" target="_blank">
-            <i class="bi bi-facebook"></i>
-          </a>
           <a href="https://www.instagram.com/shiva__diwaker/" class="social-link instagram" target="_blank">
             <i class="bi bi-instagram"></i>
           </a>
           <a href="https://teams.live.com/v2" class="social-link teams" target="_blank">
             <i class="bi bi-microsoft-teams"></i>
           </a>
-          <a href="https://www.linkedin.com/in/udayveer-diwaker-b96892356/" class="social-icon linkedin" target="_blank">
+          <a href="https://www.linkedin.com/in/udayveer-diwaker-b96892356/" class="social-link linkedin" target="_blank">
             <i class="bi bi-linkedin"></i>
           </a>
-          <a href="https://github.com/udayveerdiwaker" class="social-icon github" target="_blank">
-            <i class="bi bi-github"></i>
-          </a>
+        
 
         </div>
       </div>
