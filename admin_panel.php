@@ -14,7 +14,7 @@ if (!isset($_SESSION["user"])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio Admin</title>
-  <link rel="icon" type="image/x-icon" href="s.jpeg">
+  <link rel="icon" type="image/x-icon" href="b.jpg">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +37,7 @@ if (!isset($_SESSION["user"])) {
   <aside class="sidebar">
     <div class="sidebar-brand">
       <a href="dashboard.php">
-        <img src="s.jpeg" alt="Admin">
+        <img src="b.jpg" alt="Admin">
       </a>
       <span class="fw-bold ms-2">Portfolio Admin</span>
     </div>
@@ -97,7 +97,7 @@ if (!isset($_SESSION["user"])) {
 
           <div class="dropdown">
             <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
-              <img src="s.jpeg" alt="Admin" width="36" height="36" class="rounded-circle me-2">
+              <img src="b.jpg" alt="Admin" width="36" height="36" class="rounded-circle me-2">
               <span class="d-none d-md-inline">Shiva Diwaker</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
