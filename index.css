@@ -253,18 +253,21 @@ body {
 }
 
 .cta-button {
-  background-color: var(--accent-color);
-  color: var(--contrast-color) !important;
+  /* background-color: var(--accent-color); */
+  color: var(--accent-color) !important;
   border-radius: 30px;
   padding: 8px 20px !important;
   margin-left: 10px;
   transition: var(--transition);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
 }
 
 .cta-button:hover {
   background-color: var(--nav-hover-color);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* transform: translateY(-2px); */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: var(--background-color) !important;
 }
 
 /* Mobile Menu Styles */

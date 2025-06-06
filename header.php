@@ -1,37 +1,15 @@
 <?php
 include 'connection.php';
-// $navigation = getall('navigationbar');
+
 $navigation = getall('navigationbar');
 // print_r($navigation);
 
 $page_name = array();
-
 foreach ($navigation as $nav) {
     $page_name[$nav['navbar_links']] = $nav;
-
-
     //   print_r($page_name);
 }
 $settings = getall1('basic_setting');
-
-// exit;
-// echo $navigation['navbar_links'];
-// $categories = getall('profession_categories');
-
-// $setting = getall('basic_setting');
-// print_r($navigation);
-// echo $navigation['navbar_links'];
-// print_r($settings['first_name']);
-// // echo $navigation[1]["navbar_links"];
-
-
-
-// foreach ($navigation[1] as $key => $value) {
-//     if ($key == "navbar_links") {
-//         echo " $key: $value<br>";
-//     }
-// }
-
 
 if (isset($_POST['subscribe'])) {
     $subscribe = $_POST['email'];
@@ -62,9 +40,6 @@ if (isset($_POST['subscribe'])) {
     <link rel="stylesheet" href="index.css">
     <title>My Portfolio</title>
 </head>
-<style>
-    /* Base Styles */
-</style>
 
 <body>
     <header id="header" class="header fixed-top">
@@ -105,9 +80,9 @@ if (isset($_POST['subscribe'])) {
                                             </a>
                                         </li>
                                     <?php endforeach; ?>
-                                    <!-- <li class="nav-item">
-                                        <a class="nav-link cta-button" href="#contact">Hire Me</a>
-                                    </li> -->
+                                    <li class="nav-item">
+                                        <a class="nav-link cta-button " href="http://localhost/my_web/contact.php?contact=Contact">Hire Me</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -118,6 +93,8 @@ if (isset($_POST['subscribe'])) {
     </header>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
     <!-- <section class="section">
     <div class="container section-title aos-init aos-animate " data-aos="fade-up">
 
