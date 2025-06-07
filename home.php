@@ -1,6 +1,7 @@
 <?php include 'header.php';
 include 'popup.php';
 
+
 $result = mysqli_query($conn, "SELECT * FROM categories ORDER BY id DESC");
 ?>
 

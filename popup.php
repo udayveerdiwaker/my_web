@@ -8,7 +8,7 @@
     <style>
         :root {
             --primary-color: #34bf49;
-            --primary-hover:rgb(44, 207, 69);
+            --primary-hover: rgb(44, 207, 69);
             --text-color: #2b2d42;
             --light-gray: #f8f9fa;
             --border-color: #e9ecef;
@@ -113,7 +113,7 @@
             background-color: white;
         }
 
-        button {
+        .pop_btn {
             width: 100%;
             background-color: var(--primary-color);
             color: white;
@@ -127,13 +127,13 @@
             margin-top: 0.5rem;
         }
 
-        button:hover {
+        .pop_btn:hover {
             background-color: var(--primary-hover);
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        button:active {
+        .pop_btn:active {
             transform: translateY(0);
         }
 
@@ -227,7 +227,7 @@
                 <span class="close">&times;</span>
             </div>
 
-            <form id="registerForm">
+            <form id="registerForm" method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" required placeholder="Enter your username">
@@ -236,7 +236,7 @@
                     <label for="email">Email Address</label>
                     <input type="email" id="email" name="email" required placeholder="your@email.com">
                 </div>
-                <button type="submit">Continue</button>
+                <button type="submit" class="pop_btn" name="continue">Continue</button>
                 <div class="form-footer">
                     By registering, you agree to our Terms of Service
                 </div>
@@ -248,7 +248,7 @@
                 <h2>Thank You!</h2>
                 <p>Your registration has been successfully submitted.</p>
                 <p>We've sent a confirmation email to <span id="submittedEmail"></span></p>
-                <button onclick="document.getElementById('registerModal').style.display='none'">Close</button>
+                <button onclick="document.getElementById('registerModal').style.display='none'" class="pop_btn">Close</button>
             </div>
         </div>
     </div>
