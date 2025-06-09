@@ -291,7 +291,7 @@
                     <h2>Registration Successful!</h2>
                     <p>Thank you for joining us.</p>
                     <p>A confirmation has been sent to <span class="submitted-email"><?php echo htmlspecialchars($email); ?></span></p>
-                    <button onclick="closeModal()">Continue to Site</button>
+                    <button onclick="closeModal()" class="pop_btn">Continue to Site</button>
                 </div>
             <?php endif; ?>
         </div>

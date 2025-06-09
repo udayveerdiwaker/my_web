@@ -130,7 +130,7 @@
             transition: var(--transition);
             background-color: #fafafa;
             height: var(--input-height);
-            -webkit-appearance: none;
+            /* -webkit-appearance: none; */
         }
 
         input[type="text"]:focus,
