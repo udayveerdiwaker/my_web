@@ -1,51 +1,10 @@
-<?php
-include 'connection.php';
-
-// Initialize variables
-$show_form = true;
-$thank_you = false;
-$error = '';
-$username = '';
-$email = '';
-
-// Process form submission
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
-    // Get form data
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-
-    // Validate inputs
-    if (empty($username)) {
-        $error = "Username is required";
-    } elseif (empty($email)) {
-        $error = "Email is required";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = "Invalid email format";
-    } else {
-        // Check if email exists
-        $check_email = mysqli_query($conn, "SELECT * FROM users_register WHERE email = '$email'");
-        if (mysqli_num_rows($check_email) > 0) {
-            $error = "Email already registered";
-        } else {
-            // Insert new user
-            $insert = mysqli_query($conn, "INSERT INTO users_register (username, email) VALUES ('$username', '$email')");
-            if ($insert) {
-                $show_form = false;
-                $thank_you = true;
-            } else {
-                $error = "Registration failed: " . mysqli_error($conn);
-            }
-        }
-    }
-}
-?>
-
+<>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Modern Registration</title>
     <style>
         :root {
@@ -59,6 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
             --border: #e0e0e0;
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
+            --input-height: 3rem;
+            --button-height: 3rem;
         }
 
         * {
@@ -72,6 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
             background-color: #f5f5f5;
             color: var(--text);
             line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .modal {
@@ -89,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
             opacity: 0;
             visibility: hidden;
             transition: var(--transition);
+            padding: 1rem;
         }
 
         .modal.active {
@@ -98,9 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
 
         .modal-content {
             background-color: white;
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: 12px;
-            width: 90%;
+            width: 100%;
             max-width: 420px;
             box-shadow: var(--shadow);
             position: relative;
@@ -114,8 +78,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
 
         .close {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
+            top: 1rem;
+            right: 1rem;
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--text-light);
@@ -128,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
             align-items: center;
             justify-content: center;
             border-radius: 50%;
+            line-height: 1;
         }
 
         .close:hover {
@@ -136,14 +101,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
         }
 
         h2 {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             color: var(--text);
             font-weight: 600;
             font-size: 1.5rem;
+            line-height: 1.3;
         }
 
         .form-group {
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
         }
 
         label {
@@ -157,12 +123,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
         input[type="text"],
         input[type="email"] {
             width: 100%;
-            padding: 0.875rem 1rem;
+            padding: 0.75rem 1rem;
             border: 1px solid var(--border);
             border-radius: 8px;
-            font-size: 0.95rem;
+            font-size: 1rem;
             transition: var(--transition);
             background-color: #fafafa;
+            height: var(--input-height);
+            -webkit-appearance: none;
         }
 
         input[type="text"]:focus,
@@ -177,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
             background-color: var(--primary);
             color: white;
             border: none;
-            padding: 0.875rem;
+            padding: 0 1rem;
             border-radius: 8px;
             cursor: pointer;
             font-size: 1rem;
@@ -185,6 +153,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
             width: 100%;
             transition: var(--transition);
             margin-top: 0.5rem;
+            height: var(--button-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         button:hover {
@@ -198,10 +170,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
         }
 
         .form-footer {
-            margin-top: 1.5rem;
+            margin-top: 1.25rem;
             text-align: center;
             font-size: 0.85rem;
             color: #6c757d;
+            line-height: 1.4;
         }
 
         .error {
@@ -209,11 +182,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
             background-color: var(--error-light);
             padding: 0.75rem 1rem;
             border-radius: 8px;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
             font-size: 0.9rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            line-height: 1.4;
         }
 
         .error:before {
@@ -228,11 +202,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
             border-radius: 50%;
             font-size: 0.8rem;
             font-weight: bold;
+            flex-shrink: 0;
         }
 
         .thank-you {
             text-align: center;
-            padding: 1rem 0;
+            padding: 0.5rem 0;
         }
 
         .thank-you h2 {
@@ -241,21 +216,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
         }
 
         .thank-you p {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             color: var(--text);
+            line-height: 1.5;
         }
 
         .thank-you-icon {
             font-size: 3.5rem;
             color: var(--primary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             display: inline-block;
             animation: bounce 0.6s;
+            line-height: 1;
         }
 
         .submitted-email {
             font-weight: 600;
             color: var(--primary);
+            word-break: break-all;
         }
 
         @keyframes bounce {
@@ -279,12 +257,68 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
 
         /* Responsive adjustments */
         @media (max-width: 480px) {
+            :root {
+                --input-height: 2.75rem;
+                --button-height: 2.75rem;
+            }
+
             .modal-content {
-                padding: 1.75rem;
+                padding: 1.5rem;
             }
 
             h2 {
                 font-size: 1.3rem;
+                margin-bottom: 1rem;
+            }
+
+            .form-group {
+                margin-bottom: 0.875rem;
+            }
+
+            input[type="text"],
+            input[type="email"] {
+                padding: 0.625rem 0.875rem;
+                font-size: 0.95rem;
+            }
+
+            button {
+                font-size: 0.95rem;
+            }
+
+            .thank-you-icon {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .thank-you p {
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .modal-content {
+                padding: 1.25rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+            }
+
+            .thank-you-icon {
+                font-size: 2.75rem;
+            }
+        }
+
+        /* Landscape orientation for mobile */
+        @media (max-height: 480px) and (orientation: landscape) {
+            .modal {
+                align-items: flex-start;
+                padding-top: 1rem;
+                overflow-y: auto;
+            }
+
+            .modal-content {
+                margin: 1rem 0;
             }
         }
     </style>
@@ -295,14 +329,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
     <!-- Registration Modal -->
     <div class="modal active" id="registerModal">
         <div class="modal-content">
-            <button class="close" onclick="closeModal()">&times;</button>
+            <button class="close" onclick="closeModal()" aria-label="Close modal">&times;</button>
 
-            <?php if ($show_form): ?>
+            <!-- <?php if ($show_form): ?> -->
                 <!-- Registration Form -->
                 <h2>Register Now</h2>
 
                 <?php if (!empty($error)): ?>
-                    <div class="error"><?php echo htmlspecialchars($error); ?></div>
+                    <div class="error" role="alert"><?php echo htmlspecialchars($error); ?></div>
                 <?php endif; ?>
 
                 <form method="POST">
@@ -329,7 +363,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
             <?php elseif ($thank_you): ?>
                 <!-- Thank You Message -->
                 <div class="thank-you">
-                    <div class="thank-you-icon">✓</div>
+                    <div class="thank-you-icon" aria-hidden="true">✓</div>
                     <h2>Registration Successful!</h2>
                     <p>Thank you for joining us.</p>
                     <p>A confirmation has been sent to <span class="submitted-email"><?php echo htmlspecialchars($email); ?></span></p>
@@ -344,12 +378,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('registerModal');
             modal.classList.add('active');
+
+            // Prevent background scrolling when modal is open
+            document.body.style.overflow = 'hidden';
         });
 
         // Close modal function
         function closeModal() {
             const modal = document.getElementById('registerModal');
             modal.classList.remove('active');
+
+            // Restore background scrolling
+            document.body.style.overflow = '';
+
             setTimeout(() => {
                 modal.style.display = 'none';
             }, 300); // Match the transition duration
@@ -359,6 +400,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
         window.addEventListener('click', function(event) {
             const modal = document.getElementById('registerModal');
             if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Handle keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('registerModal');
+            if (event.key === 'Escape' && modal.classList.contains('active')) {
                 closeModal();
             }
         });

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -132,7 +131,7 @@
             background-color: white;
         }
 
-        button {
+        .pop_btn {
             background-color: var(--primary);
             color: white;
             border: none;
@@ -146,13 +145,13 @@
             margin-top: 0.5rem;
         }
 
-        button:hover {
+        .pop_btn:hover {
             background-color: var(--primary-hover);
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        button:active {
+        .pop_btn:active {
             transform: translateY(0);
         }
 
@@ -279,7 +278,7 @@
                             placeholder="your@email.com">
                     </div>
 
-                    <button type="submit" name="register">Continue</button>
+                    <button type="submit" name="register" class="pop_btn">Continue</button>
                     <div class="form-footer">
                         By registering, you agree to our Terms of Service
                     </div>
