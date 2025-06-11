@@ -2,7 +2,7 @@
 include 'popup.php';
 
 
-$result = mysqli_query($conn, "SELECT * FROM categories ORDER BY id DESC");
+// $result = mysqli_query($conn, "SELECT * FROM categories ORDER BY id DESC");
 ?>
 
 <section id="home" class="home-section">
@@ -16,27 +16,17 @@ $result = mysqli_query($conn, "SELECT * FROM categories ORDER BY id DESC");
             <span class="animated-cursor">|</span>
           </h1>
 
-          <!-- <div class="profession-container">
-            <span class="static-text">I'm a</span>
-            <div class="dynamic-text">
-              <?php while ($category = mysqli_fetch_assoc($categories)) { ?>
-                <span class="profession-item"><?php echo $category['profession'] ?></span>
-              <?php } ?> 
-
-              <?php while ($row = $result->fetch_assoc()) { ?>
-                <span class="profession-item"><?php echo $row['name'] ?></span>
-              <?php }
-              ?>
-            </div>
-          </div> -->
-
           <div class="profession-container">
             <span class="static-text">I'm a</span>
             <div class="dynamic-text">
               <div class="profession-list">
                 <?php
-                // Assuming $conn is your mysqli connection object
-                $result = mysqli_query($conn, "SELECT * FROM categories ORDER BY id DESC");
+                // Query to select categories
+                $sql = "SELECT * FROM categories ORDER BY id DESC";
+
+                // Execute query
+                $result = mysqli_query($conn, $sql);
+
 
                 if ($result) {
                   while ($category = mysqli_fetch_assoc($result)) {
@@ -54,7 +44,7 @@ $result = mysqli_query($conn, "SELECT * FROM categories ORDER BY id DESC");
               </div>
             </div>
           </div>
-
+         
           <div class="hero-buttons">
             <a href="http://localhost/my_web/contact.php?contact=Contact" class="btn btn-primary">Hire Me</a>
             <a href="http://localhost/my_web/resume.php?resume=Resume" class="btn btn-outline">View Work</a>
