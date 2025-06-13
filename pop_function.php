@@ -25,7 +25,7 @@ if (isset($_POST['register'])) {
             $show_form = false;
             $thank_you = true;
         } else {
-            $error = "Registration failed: " . mysqli_error($conn);
+            $error = "Registration failed. Please try again.";
         }
     }
 }
