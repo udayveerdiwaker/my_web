@@ -55,11 +55,11 @@ function getall1($getalldata1)
 {
   global $conn;
 
-  $allowed_categories = ['categories'];
+  // $allowed_categories = ['categories'];
 
-  if (!in_array($getalldata1, $allowed_categories)) {
-    die('Invalid category');
-  }
+  // if (!in_array($getalldata1, $allowed_categories)) {
+  //   die('Invalid category');
+  // }
 
   $Setting = "SELECT * FROM  `$getalldata1`";
 
