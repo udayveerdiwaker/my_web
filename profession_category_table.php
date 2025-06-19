@@ -90,8 +90,7 @@ include 'admin_panel.php';
                     <i class="bi bi-pencil"></i> Edit
                   </a>
                   <a href="profession_delete_category.php?id=<?php echo $row['id']; ?>"
-                    class="btn btn-sm btn-outline-danger action-btn"
-                    onclick="return confirm('Are you sure you want to delete this category?')">
+                    class="btn btn-sm btn-outline-danger action-btn">
                     <i class="bi bi-trash"></i> Delete
                   </a>
                 </div>

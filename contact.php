@@ -1,22 +1,65 @@
 <?php
 include 'header.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+include 'PHPMailer/src/Exception.php';
+include 'PHPMailer/src/PHPMailer.php';
+include 'PHPMailer/src/SMTP.php';
+
 $contact = $_GET['contact'];
 
 if (isset($_POST['submit'])) {
-  $name = $_POST['name'];
-  $email = $_POST['email'];
-  $Contact = $_POST['contact'];
-  $subject = $_POST['subject'];
-  $message = $_POST['message'];
-  $insert = "INSERT INTO `contact_data` (`name`, `email`, `contact`, `subject`, `message`) VALUES ('$name','$email','$Contact','$subject','$message')";
+  // Secure input
+  $name    = mysqli_real_escape_string($conn, $_POST['name']);
+  $Contact = mysqli_real_escape_string($conn, $_POST['contact']);
+  $email   = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+
+  $subject = mysqli_real_escape_string($conn, htmlspecialchars($_POST['subject']));
+
+  $message = mysqli_real_escape_string($conn, htmlspecialchars($_POST['message']));
+
+  $body    = "Email: $email <br> Contact: $Contact <br><br>Message:<br> $message";
+
+
+  // Insert into DB
+  $insert = "INSERT INTO `contact_data` (`name`, `email`, `contact`, `subject`, `message`) 
+               VALUES ('$name', '$email', '$Contact', '$subject', '$message')";
   mysqli_query($conn, $insert);
 
+  // Email
+  $mail = new PHPMailer(true);
+  try {
+    $mail->isSMTP();
+    $mail->Host       = 'smtp.gmail.com';
+    $mail->SMTPAuth   = true;
+    $mail->Username   = 'udayveerdiwaker2@gmail.com';    // Your Gmail
+    $mail->Password   = 'nijdtytmopspptzd';              // App password
+    $mail->SMTPSecure = 'tls';
+    $mail->Port       = 587;
+
+    $mail->setFrom($email, 'Website Contact Form');
+    $mail->addAddress('udayveerdiwaker2@gmail.com');
+    $mail->isHTML(true);
+    $mail->Subject = $subject;
+    $mail->Body    = $body;
+
+    $mail->send();
+
+    // echo "<script>alert('Thank you! Your message has been sent successfully.'); window.location.href='contact.php';</script>";
+  } catch (Exception $e) {
+    echo "<script>alert('Email could not be sent. Mailer Error: {$mail->ErrorInfo}'); window.location.href='contact.php';</script>";
+  }
   // Instead of redirecting, we'll set a session variable
   $_SESSION['form_submitted'] = true;
   // In your form submission handler:
-  header('location: http://localhost/my_web/contact.php?contact=Contact&submitted=true');
+  // header('location: http://localhost/my_web/contact.php?contact=Contact&submitted=true');
 }
+
 ?>
+
+
 <style>
   /* Contact Section Styles */
   .contact-section {
@@ -458,7 +501,7 @@ if (isset($_POST['submit'])) {
           <a href="https://www.linkedin.com/in/udayveer-diwaker-b96892356/" class="social-link linkedin" target="_blank">
             <i class="bi bi-linkedin"></i>
           </a>
-        
+
 
         </div>
       </div>
@@ -573,7 +616,7 @@ if (isset($_POST['submit'])) {
     </script>
     <!-- Map Section -->
     <div class="map-container">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d756.280109696426!2d78.28416936955642!3d30.090079658806705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39093e06f6a6281d%3A0x76564b96e2aa96f1!2sAvas%20Vikas%20Colony%2C%20Rishikesh%2C%20Uttarakhand%20249201!5e1!3m2!1sen!2sin!4v1724390545146!5m2!1sen!2sin"
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2777.800182148053!2d78.27636500244151!3d30.092406650524584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39093f3354762571%3A0x529be26f1d6d1438!2sWebsite%20Banaye%20%26%20Computer%20Sikhe!5e1!3m2!1sen!2sin!4v1750317961268!5m2!1sen!2sin"
         allowfullscreen=""
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade">

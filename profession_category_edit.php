@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include 'admin_panel.php';
 
 // Check if category ID is provided
@@ -10,7 +11,7 @@ if (!isset($_GET['id'])) {
 $id = intval($_GET['id']); // Sanitize input
 
 // Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST['update_category'])) {
     $name = trim($_POST['name']);
     if (!empty($name)) {
         $name = mysqli_real_escape_string($conn, $name);
@@ -132,11 +133,14 @@ if (!$category) {
                     <a href="profession_category_table.php" class="btn btn-outline-secondary">
                         Cancel
                     </a>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" name="update_category">
                         <i class="bi bi-save me-2"></i> Update Category
                     </button>
                 </div>
             </form>
         </div>
     </div>
-    </div>
+
+    <?php
+    ob_end_flush();
+    ?>

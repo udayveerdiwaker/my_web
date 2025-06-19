@@ -8,8 +8,9 @@ $navigation = getall('navigationbar');
 $page_name = array();
 foreach ($navigation as $nav) {
     $page_name[$nav['navbar_links']] = $nav;
-    //   print_r($page_name);
+    // print_r($page_name);    
 }
+
 $settings = getall1('basic_setting');
 
 if (isset($_POST['subscribe'])) {

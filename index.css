@@ -320,7 +320,7 @@ a {
   text-decoration: none;
 }
 
-/* home section */
+
 /* Home Section Styles */
 .home-section {
   padding: 120px 0;
@@ -820,7 +820,7 @@ a {
 .footer-text {
   color: var(--color);
   margin-bottom: 15px;
-  line-height: 1.6;
+  line-height: 1.6; 
 }
 
 .footer-links {

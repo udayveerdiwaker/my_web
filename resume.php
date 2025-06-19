@@ -404,32 +404,34 @@ $resume = $_GET['resume'];
                 <div class="skill-item">
                   <div class="skill-info">
                     <span class="skill-name">PHP</span>
-                    <span class="skill-percent">65%</span>
+                    <span class="skill-percent">50%</span>
                   </div>
                   <div class="skill-bar">
-                    <div class="skill-level php" data-level="65"></div>
-                  </div>
-                </div>
-
-                <div class="skill-item">
-                  <div class="skill-info">
-                    <span class="skill-name">JavaScript</span>
-                    <span class="skill-percent">40%</span>
-                  </div>
-                  <div class="skill-bar">
-                    <div class="skill-level javascript" data-level="40"></div>
+                    <div class="skill-level php" data-level="50"></div>
                   </div>
                 </div>
 
                 <div class="skill-item">
                   <div class="skill-info">
                     <span class="skill-name">MySQL</span>
-                    <span class="skill-percent">50%</span>
+                    <span class="skill-percent">30%</span>
                   </div>
                   <div class="skill-bar">
-                    <div class="skill-level mysql" data-level="50"></div>
+                    <div class="skill-level mysql" data-level="30"></div>
                   </div>
                 </div>
+                
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">JavaScript</span>
+                    <span class="skill-percent">20%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-level javascript" data-level="20"></div>
+                  </div>
+                </div>
+
+
               </div>
             </div>
           </div>

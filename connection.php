@@ -7,11 +7,11 @@ $dbname = 'project_cms';
 $conn = mysqli_connect($server, $user, $pass, $dbname);
 
 // Avoid echoing anything to prevent "headers already sent" error
-// if ($conn) {
-//   echo "Connection successfully";
-// } else {
-//   echo "Connection failed";  // ❌ Remove this
-// }
+if ($conn) {
+  // echo "Connection successfully";
+} else {
+  echo "Connection failed";  // ❌ Remove this
+}
 
 // function getall($getalldata)
 // {
@@ -46,6 +46,7 @@ function getall($getalldata)
 
   while ($row = mysqli_fetch_assoc($result)) {
     $all_pages[] = $row;
+    // print_r($all_pages);
   }
 
   return $all_pages;
