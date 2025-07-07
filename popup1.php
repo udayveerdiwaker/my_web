@@ -243,7 +243,7 @@
 <body>
 
     <!-- Registration Modal -->
-    <div class="modal" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal active" id="registerModal">
         <div class="modal-content">
             <button class="close" onclick="closeModal()">&times;</button>
 
@@ -270,7 +270,7 @@
 
                     <button type="submit" name="register" class="pop_btn">Continue</button>
                     <div class="form-footer">
-                        <p class="m-0">Already have an account? <a href="login.php">Sign In</a></p>
+                        By registering, you agree to our Terms of Service
                     </div>
 
                 </form>
@@ -288,34 +288,26 @@
             <?php endif; ?>
         </div>
     </div>
+
     <script>
-        // ✅ Auto show modal one time
-        document.addEventListener("DOMContentLoaded", function () {
-            if (!localStorage.getItem("registerModalShown")) {
-                openModal();
-                localStorage.setItem("registerModalShown", "true");
-            }
+        // Show modal on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            const modal = document.getElementById('registerModal');
+            modal.classList.add('active');
         });
 
-        // ✅ Manual open
-        function openModal() {
-            const modal = document.getElementById("registerModal");
-            modal.style.display = "flex";
-            modal.classList.add("active");
-        }
-
-        // ✅ Close modal
+        // Close modal function
         function closeModal() {
-            const modal = document.getElementById("registerModal");
-            modal.classList.remove("active");
+            const modal = document.getElementById('registerModal');
+            modal.classList.remove('active');
             setTimeout(() => {
-                modal.style.display = "none";
-            }, 300);
+                modal.style.display = 'none';
+            }, 300); // Match the transition duration
         }
 
-        // ✅ Click outside to close
-        window.addEventListener("click", function (event) {
-            const modal = document.getElementById("registerModal");
+        // Close when clicking outside
+        window.addEventListener('click', function (event) {
+            const modal = document.getElementById('registerModal');
             if (event.target === modal) {
                 closeModal();
             }

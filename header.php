@@ -36,7 +36,8 @@ if (isset($_POST['subscribe'])) {
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/x-icon" href="<?php echo 'image/' . $settings['logo'] ?>" class="rounded-circle">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <title>My Portfolio</title>
@@ -62,12 +63,14 @@ if (isset($_POST['subscribe'])) {
                                     <div class="logo-text-container">
                                         <!-- <img src="<?php echo 'image/' . $settings['logo'] ?>" alt="<?php echo $settings['first_name'] ?? 'Website Logo'; ?>" class="logo-img"> -->
                                         <div class="brand-name">
-                                            <span class="brand-name-part"><?php echo htmlspecialchars($settings['first_name']); ?></span>
+                                            <span
+                                                class="brand-name-part"><?php echo htmlspecialchars($settings['first_name']); ?></span>
                                         </div>
                                     </div>
                                 </div>
                             </a>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarNav">
                                 <i class="bi bi-list"></i>
                             </button>
 
@@ -81,9 +84,13 @@ if (isset($_POST['subscribe'])) {
                                             </a>
                                         </li>
                                     <?php endforeach; ?>
+                                    <!-- <li class="nav-item">
+                                        <a class="nav-link cta-button " href="http://localhost/my_web/contact.php?contact=">login</a>
+                                    </li> -->
                                     <li class="nav-item">
-                                        <a class="nav-link cta-button " href="http://localhost/my_web/contact.php?contact=Contact">Hire Me</a>
+                                        <a type="btn" class="nav-link cta-button btn" onclick="openModal()">Hire Me</a>
                                     </li>
+                                    <!-- <button class="pop_btn" onclick="openModal()">Register Now</button> -->
                                 </ul>
                             </div>
                         </div>
