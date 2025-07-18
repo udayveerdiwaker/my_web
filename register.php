@@ -310,7 +310,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 20px;
         }
     }
-</style>- Decorative background elements -->
+</style>
 
 <!-- Register Modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">

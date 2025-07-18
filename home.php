@@ -2,8 +2,10 @@
 include 'popup.php';
 
 
+
 // $result = mysqli_query($conn, "SELECT * FROM categories ORDER BY id DESC");
 ?>
+
 
 <section id="home" class="home-section">
   <div class="container">
@@ -30,9 +32,9 @@ include 'popup.php';
 
                 if ($result) {
                   while ($category = mysqli_fetch_assoc($result)) {
-                ?>
+                    ?>
                     <span class="profession-item"><?php echo htmlspecialchars($category['name']); ?></span>
-                <?php
+                    <?php
                   }
                 } else {
                   echo "Error in query: " . mysqli_error($conn);
@@ -44,7 +46,7 @@ include 'popup.php';
               </div>
             </div>
           </div>
-         
+
           <div class="hero-buttons">
             <a href="http://localhost/my_web/contact.php?contact=Contact" class="btn btn-primary">Hire Me</a>
             <a href="http://localhost/my_web/resume.php?resume=Resume" class="btn btn-outline">View Work</a>
@@ -54,7 +56,8 @@ include 'popup.php';
 
       <div class="col-lg-6 order-lg-2 order-1">
         <div class="hero-image">
-          <img src="<?php echo 'image/' . $settings['images'] ?>" alt="<?php echo $settings['first_name'] ?>" class="img-fluid profile-image">
+          <img src="<?php echo 'image/' . $settings['images'] ?>" alt="<?php echo $settings['first_name'] ?>"
+            class="img-fluid profile-image">
           <!-- <img src="demo.jpg" alt="udayveer" class="img-fluid profile-image"> -->
           <div class="shape shape-1"></div>
           <div class="shape shape-2"></div>

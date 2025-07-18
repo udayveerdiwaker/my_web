@@ -1,3 +1,4 @@
+
 <style>
     :root {
         --primary: #4CAF50;
@@ -10,19 +11,6 @@
         --border: #e0e0e0;
         --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         --transition: all 0.3s ease;
-    }
-
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    body {
-        font-family: 'Segoe UI', 'Roboto', -apple-system, sans-serif;
-        background-color: #f5f5f5;
-        color: var(--text);
-        line-height: 1.6;
     }
 
     .modal {
@@ -240,84 +228,105 @@
     }
 </style>
 
-<body>
 
-    <!-- Registration Modal -->
-    <div class="modal" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
-        <div class="modal-content">
-            <button class="close" onclick="closeModal()">&times;</button>
 
-            <?php if ($show_form): ?>
-                <!-- Registration Form -->
-                <h2>Register Now</h2>
+<!-- Registration Modal -->
+<div class="modal" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-content">
+        <button class="close" onclick="closeModal()">&times;</button>
 
-                <?php if (!empty($error)): ?>
-                    <div class="error"><?php echo htmlspecialchars($error); ?></div>
-                <?php endif; ?>
+        <?php if ($show_form): ?>
+            <!-- Registration Form -->
+            <h2>Register Now</h2>
 
-                <form method="POST">
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" required
-                            value="<?php echo htmlspecialchars($username); ?>" placeholder="Enter your username">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required value="<?php echo htmlspecialchars($email); ?>"
-                            placeholder="your@email.com">
-                    </div>
-
-                    <button type="submit" name="register" class="pop_btn">Continue</button>
-                    <div class="form-footer">
-                        <p class="m-0">Already have an account? <a href="login.php">Sign In</a></p>
-                    </div>
-
-                </form>
-
-            <?php elseif ($thank_you): ?>
-                <!-- Thank You Message -->
-                <div class="thank-you">
-                    <div class="thank-you-icon">✓</div>
-                    <h2>Registration Successful!</h2>
-                    <p>Thank you for joining us.</p>
-                    <p>A confirmation has been sent to <span
-                            class="submitted-email"><?php echo htmlspecialchars($email); ?></span></p>
-                    <button onclick="closeModal()" class="pop_btn">Continue to Site</button>
-                </div>
+            <?php if (!empty($error)): ?>
+                <div class="error"><?php echo htmlspecialchars($error); ?></div>
             <?php endif; ?>
-        </div>
+
+            <form method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required
+                        value="<?php echo htmlspecialchars($username); ?>" placeholder="Enter your username">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required value="<?php echo htmlspecialchars($email); ?>"
+                        placeholder="your@email.com">
+                </div>
+
+                <button type="submit" name="register" class="pop_btn">Continue</button>
+                <div class="form-footer">
+                    <p class="m-0">Already have an account? <a href="login.php">Sign In</a></p>
+                </div>
+
+            </form>
+
+        <?php elseif ($thank_you): ?>
+            <!-- Thank You Message -->
+            <div class="thank-you">
+                <div class="thank-you-icon">✓</div>
+                <h2>Registration Successful!</h2>
+                <p>Thank you for joining us.</p>
+                <p>A confirmation has been sent to <span
+                        class="submitted-email"><?php echo htmlspecialchars($email); ?></span></p>
+                <button onclick="closeModal()" class="pop_btn">Continue to Site</button>
+            </div>
+        <?php endif; ?>
     </div>
-    <script>
-        // ✅ Auto show modal one time
-        document.addEventListener("DOMContentLoaded", function () {
-            if (!localStorage.getItem("registerModalShown")) {
-                openModal();
-                localStorage.setItem("registerModalShown", "true");
-            }
-        });
+</div>
+<script>
+    // ✅ Auto show modal one time
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     if (!localStorage.getItem("registerModalShown")) {
+    //         openModal();
+    //         localStorage.setItem("registerModalShown", "true");
+    //     }
+    // });
 
-        // ✅ Manual open
-        function openModal() {
-            const modal = document.getElementById("registerModal");
-            modal.style.display = "flex";
-            modal.classList.add("active");
-        }
+    // // ✅ Manual open
+    // function openModal() {
+    //     const modal = document.getElementById("registerModal");
+    //     modal.style.display = "flex";
+    //     modal.classList.add("active");
+    // }
 
-        // ✅ Close modal
-        function closeModal() {
-            const modal = document.getElementById("registerModal");
-            modal.classList.remove("active");
-            setTimeout(() => {
-                modal.style.display = "none";
-            }, 300);
-        }
+    // // ✅ Close modal
+    // function closeModal() {
+    //     const modal = document.getElementById("registerModal");
+    //     modal.classList.remove("active");
+    //     setTimeout(() => {
+    //         modal.style.display = "none";
+    //     }, 300);
+    // }
 
-        // ✅ Click outside to close
-        window.addEventListener("click", function (event) {
-            const modal = document.getElementById("registerModal");
-            if (event.target === modal) {
-                closeModal();
-            }
-        });
-    </script>
+    // // ✅ Click outside to close
+    // window.addEventListener("click", function (event) {
+    //     const modal = document.getElementById("registerModal");
+    //     if (event.target === modal) {
+    //         closeModal();
+    //     }
+    // });
+</script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        openModal(); // Use always open to test
+    });
+
+    function openModal() {
+        const modal = document.getElementById("registerModal");
+        modal.style.display = "flex";
+        modal.classList.add("active");
+    }
+
+    function closeModal() {
+        const modal = document.getElementById("registerModal");
+        modal.classList.remove("active");
+        setTimeout(() => {
+            modal.style.display = "none";
+        }, 300);
+    }
+</script>
