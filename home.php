@@ -1,31 +1,25 @@
-<?php
-// session_start();
-// if (!isset($_SESSION['user'])) {
-//   header("Location: index.php");
-//   exit();
-// }
-
-include 'header.php';
+<?php include 'header.php';
 include 'popup.php';
-// include 'index.php';
-
-$result = mysqli_query($conn, "SELECT * FROM categories ORDER BY id DESC");
 
 
+
+// $result = mysqli_query($conn, "SELECT * FROM categories ORDER BY id DESC");
 ?>
+
+
 <section id="home" class="home-section">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-6 order-lg-1 order-2">
         <div class="hero-content">
-          <span class="welcome-text text-gradient">Hi there, I'm</span>
+          <span class="welcome-text">Hi there, I'm</span>
           <h1 class="hero-title">
             <span class="text-gradient"><?php echo $settings['first_name'] ?></span>
             <span class="animated-cursor">|</span>
           </h1>
 
           <div class="profession-container">
-            <span class="static-text tex">I'm a</span>
+            <span class="static-text">I'm a</span>
             <div class="dynamic-text">
               <div class="profession-list">
                 <?php
@@ -75,7 +69,5 @@ $result = mysqli_query($conn, "SELECT * FROM categories ORDER BY id DESC");
 
 
 </section>
-
-
 
 <?php include 'footer.php'; ?>
