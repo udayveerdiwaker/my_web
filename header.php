@@ -1,6 +1,7 @@
 <?php
 include 'connection.php';
-include 'pop_function.php';
+// include 'register_function.php';
+// include 'login_process.php';
 
 $navigation = getall('navigationbar');
 // print_r($navigation);
@@ -85,7 +86,7 @@ if (isset($_POST['subscribe'])) {
                                         </li>
                                     <?php endforeach; ?>
                                     <!-- <li class="nav-item">
-                                        <a class="nav-link cta-button " href="http://localhost/my_web/contact.php?contact=">login</a>
+                                        <a class="nav-link cta-button " href="logout_1.php">Logout</a>
                                     </li> -->
                                     <li class="nav-item">
                                         <a type="btn" class="nav-link cta-button btn" onclick="openModal()">Hire Me</a>

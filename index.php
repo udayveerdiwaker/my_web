@@ -1,139 +1,139 @@
-<?php
-$show_form = true;
-$thank_you = false;
-$error = '';
-$username = '';
-$email = '';
-$openModal = ''; // empty by default
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-
-    $check = mysqli_query($conn, "SELECT * FROM users_register WHERE email='$email'");
-    if (mysqli_num_rows($check) > 0) {
-        $error = "This email is already registered. Please log in.";
-        $openModal = 'login';
-    } else {
-        $insert = mysqli_query($conn, "INSERT INTO users_register (username, email) VALUES ('$username', '$email')");
-        if ($insert) {
-            $thank_you = true;
-        } else {
-            $error = "Something went wrong. Try again.";
-            $openModal = 'register';
-        }
-    }
-}
-?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Auto Register/Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .modal {
-            display: none;
-            background: rgba(0, 0, 0, 0.6);
-            justify-content: center;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .modal.show {
-            display: flex !important;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            max-width: 400px;
-            width: 100%;
-            position: relative;
-        }
-
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            border: none;
-            font-size: 24px;
-            background: none;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="popup.css">
 </head>
 
 <body>
-
-    <!-- Register Modal -->
-    <div class="modal" id="registerModal">
+    <div class="modal" id="emailModal">
         <div class="modal-content">
-            <button class="close" onclick="closeModal('registerModal')">&times;</button>
-            <?php if ($thank_you): ?>
-                <h4>Thank you for registering!</h4>
-            <?php else: ?>
-                <h4 class="mb-3">Register</h4>
-                <?php if ($error && $openModal == 'register'): ?>
-                    <div class="alert alert-danger"><?= $error ?></div>
-                <?php endif; ?>
-                <form method="POST">
-                    <input type="text" name="username" class="form-control mb-2" placeholder="Username" required
-                        value="<?= htmlspecialchars($username) ?>">
-                    <input type="email" name="email" class="form-control mb-2" placeholder="Email" required
-                        value="<?= htmlspecialchars($email) ?>">
-                    <button type="submit" name="register" class="btn btn-success w-100">Register</button>
-                    <p class="mt-3">Already registered? <a href="#" onclick="switchTo('loginModal')">Login here</a></p>
-                </form>
-            <?php endif; ?>
-        </div>
-    </div>
+            <div class="modal-header">
+                <button class="close-btn" id="closeBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2>Welcome Back!</h2>
+                <p>Enter your email to access your account</p>
+            </div>
 
-    <!-- Login Modal -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <button class="close" onclick="closeModal('loginModal')">&times;</button>
-            <h4 class="mb-3">Login</h4>
-            <?php if ($error && $openModal == 'login'): ?>
-                <div class="alert alert-warning"><?= $error ?></div>
-            <?php endif; ?>
-            <form method="POST">
-                <input type="email" class="form-control mb-2" placeholder="Email" required>
-                <input type="password" class="form-control mb-2" placeholder="Password" required>
-                <button type="submit" class="btn btn-primary w-100">Login</button>
-                <p class="mt-3">Don't have an account? <a href="#" onclick="switchTo('registerModal')">Register</a></p>
-            </form>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" placeholder="your.email@example.com" autocomplete="off">
+                    </div>
+                    <div class="error-message" id="errorMessage">
+                        Please enter a valid email address
+                    </div>
+                </div>
+
+                <button class="submit-btn" id="submitBtn">
+                    <div class="loader" id="loader"></div>
+                    <span>Continue</span>
+                </button>
+            </div>
+
+            <div class="footer_1">
+                By continuing, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+            </div>
         </div>
     </div>
 
     <script>
-        function closeModal(id) {
-            document.getElementById(id).classList.remove("show");
-        }
-        function openModal(id) {
-            document.getElementById(id).classList.add("show");
-        }
-        function switchTo(target) {
-            closeModal('registerModal');
-            closeModal('loginModal');
-            setTimeout(() => openModal(target), 300);
-        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const emailModal = document.getElementById('emailModal');
+            const emailInput = document.getElementById('email');
+            const submitBtn = document.getElementById('submitBtn');
+            const closeBtn = document.getElementById('closeBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            const loader = document.getElementById('loader');
 
-        // Auto-open correct modal
-        window.addEventListener("DOMContentLoaded", () => {
-            <?php if ($openModal == 'login'): ?>
-                openModal('loginModal');
-            <?php else: ?>
-                openModal('registerModal');
-            <?php endif; ?>
+            // Show modal immediately
+            setTimeout(() => {
+                emailModal.style.display = 'flex';
+                emailInput.focus();
+            }, 1000);
+
+            // Validate email function
+            function isValidEmail(email) {
+                const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+            // Handle submit button click
+            submitBtn.addEventListener('click', function () {
+                const email = emailInput.value.trim();
+
+                if (!isValidEmail(email)) {
+                    errorMessage.style.display = 'block';
+                    emailInput.focus();
+
+                    // Shake animation for error
+                    emailModal.animate([
+                        { transform: 'translateX(0)' },
+                        { transform: 'translateX(-10px)' },
+                        { transform: 'translateX(10px)' },
+                        { transform: 'translateX(0)' }
+                    ], {
+                        duration: 400,
+                        iterations: 1
+                    });
+
+                    return;
+                }
+
+                // Clear error and show loading
+                errorMessage.style.display = 'none';
+                loader.style.display = 'block';
+                submitBtn.querySelector('span').textContent = 'Processing...';
+                submitBtn.disabled = true;
+
+                // Simulate API call to check user
+                setTimeout(function () {
+                    // In a real app, this would be your fetch call to check_user.php
+                    const userExists = Math.random() > 0.5; // Random for demo
+
+                    loader.style.display = 'none';
+                    submitBtn.querySelector('span').textContent = 'Continue';
+                    submitBtn.disabled = false;
+
+                    if (userExists) {
+                        // Redirect to login page in real app
+                        window.location.href = 'login.php?email=' + encodeURIComponent(email);
+                    } else {
+                        // Redirect to popup page in real app
+                        window.location.href = 'popup.php?email=' + encodeURIComponent(email);
+                    }
+                }, 1500);
+            });
+
+            // Handle close button
+            closeBtn.addEventListener('click', function () {
+                emailModal.style.display = 'none';
+                // alert('You need to enter your email to access the service');
+            });
+
+            // Validate on input change
+            emailInput.addEventListener('input', function () {
+                if (isValidEmail(emailInput.value.trim())) {
+                    errorMessage.style.display = 'none';
+                }
+            });
+
+            // Submit on Enter key
+            emailInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    submitBtn.click();
+                }
+            });
         });
     </script>
-
 </body>
 
 </html>
