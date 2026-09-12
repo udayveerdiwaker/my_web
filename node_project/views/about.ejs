@@ -1,0 +1,283 @@
+<%- include('partials/header') %>
+
+<style>
+  /* About Section Styles */
+.about-section {
+  padding: 100px 0;
+  background-color: var(--background-color);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 15px;
+  font-family: var(--heading-font);
+}
+
+.section-subtitle {
+  color: var(--color);
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.profile-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+}
+
+.profile-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: var(--transition);
+}
+
+.profile-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(52, 191, 73, 0.8), transparent);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 30px;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.profile-card:hover .profile-overlay {
+  opacity: 1;
+}
+
+.profile-card:hover .profile-img {
+  transform: scale(1.05);
+}
+
+.about-content {
+  padding-left: 30px;
+}
+
+.about-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--heading-color);
+  margin-bottom: 20px;
+}
+
+.about-text {
+  color: var(--default-color);
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.details-list {
+  list-style: none;
+  padding: 0;
+}
+
+.details-list li {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.details-list i {
+  color: var(--accent-color);
+  margin-right: 10px;
+  font-size: 0.8rem;
+}
+
+.details-list strong {
+  color: var(--heading-color);
+  font-weight: 600;
+  min-width: 100px;
+  display: inline-block;
+}
+
+.details-list span {
+  color: var(--default-color);
+}
+
+.about-quote {
+  background-color: rgba(52, 191, 73, 0.05);
+  border-left: 3px solid var(--accent-color);
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 0 8px 8px 0;
+}
+
+.about-quote i {
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.about-quote p {
+  font-style: italic;
+  color: var(--default-color);
+  margin: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .about-content {
+    padding-left: 0;
+    margin-top: 40px;
+  }
+  
+  .about-section {
+    padding: 80px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .about-title {
+    font-size: 1.8rem;
+  }
+  
+  .details-list li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .details-list strong {
+    margin-bottom: 5px;
+  }
+}
+</style>
+
+<section id="about" class="about-section">
+  <div class="container">
+    <div class="section_title">
+      <h2 class="section-title"><%= title || 'About' %><span class="text-gradient"> Me</span></h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-lg-5">
+        <div class="profile-card">
+          <% if (settings.images) { %>
+            <img src="/image/<%= settings.images %>" alt="<%= settings.first_name %>" class="profile-img">
+          <% } else { %>
+            <img src="/image/b.jpg" alt="Profile" class="profile-img">
+          <% } %>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="about-content">
+          <h3 class="about-title">I'm <span class="text-gradient"><%= settings.first_name || 'Shiva Diwaker' %></span></h3>
+          <p class="about-text">
+            A passionate web developer from Rishikesh currently learning web development. 
+            I enjoy playing cricket, football, and swimming in my free time. 
+            I'm working towards both short-term and long-term goals in web development.
+          </p>
+          
+          <div class="about-details">
+            <div class="row">
+              <div class="col-md-6">
+                <ul class="details-list">
+                  <li>
+                    <i class="bi bi-chevron-right"></i>
+                    <strong>Name:</strong> 
+                    <span><%= settings.first_name || '' %></span>
+                  </li>
+                  <li>
+                    <i class="bi bi-chevron-right"></i>
+                    <strong>Birthday:</strong> 
+                    <span>8 Jan 2005</span>
+                  </li>
+                  <li>
+                    <i class="bi bi-chevron-right"></i>
+                    <strong>Phone:</strong> 
+                    <span>+91 <%= settings.number || '' %></span>
+                  </li>
+                  <li>
+                    <i class="bi bi-chevron-right"></i>
+                    <strong>City:</strong> 
+                    <span>Rishikesh, Uttarakhand</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <ul class="details-list">
+                  <li>
+                    <i class="bi bi-chevron-right"></i>
+                    <strong>Age:</strong> 
+                    <span>18</span>
+                  </li>
+                  <li>
+                    <i class="bi bi-chevron-right"></i>
+                    <strong>Education:</strong> 
+                    <span>12th Pass</span>
+                  </li>
+                  <li>
+                    <i class="bi bi-chevron-right"></i>
+                    <strong>Email:</strong> 
+                    <span><%= settings.email || '' %></span>
+                  </li>
+                  <li>
+                    <i class="bi bi-chevron-right"></i>
+                    <strong>Freelance:</strong> 
+                    <span>Available</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="about-quote">
+            <i class="bi bi-quote"></i>
+            <p class="fst-italic">
+              I'm a 12th pass student currently learning web development to build my career in this field.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Register / Login Modal popup overlay -->
+<div class="popup-overlay" id="hireMeModal" style="display: none;">
+  <div class="popup-content" style="text-align: left; max-width: 450px;">
+    <h3 style="text-align: center;">Get in Touch</h3>
+    <p style="text-align: center; font-size: 0.95rem;">Please register or login to request an inquiry or check services.</p>
+    <div style="display: flex; gap: 15px; margin-top: 20px;">
+      <a href="/login" class="btn btn-primary w-100" style="text-decoration: none; text-align: center; padding-top: 10px;">Login</a>
+      <a href="/register" class="btn btn-outline w-100" style="text-decoration: none; text-align: center; padding-top: 10px;">Register</a>
+    </div>
+    <button class="popup-close-btn w-100 mt-3" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<script>
+  function openModal() {
+    const modal = document.getElementById('hireMeModal');
+    modal.style.display = 'flex';
+    setTimeout(() => modal.classList.add('active'), 50);
+  }
+  function closeModal() {
+    const modal = document.getElementById('hireMeModal');
+    modal.classList.remove('active');
+    setTimeout(() => modal.style.display = 'none', 300);
+  }
+</script>
+
+<%- include('partials/footer') %>

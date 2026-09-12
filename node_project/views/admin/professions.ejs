@@ -1,0 +1,123 @@
+<%- include('admin_header') %>
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0">Profession Categories Management</h1>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+    <i class="bi bi-plus-circle me-2"></i> Add New Category
+  </button>
+</div>
+
+<!-- Table Card -->
+<div class="card table-card shadow-sm border-0 mb-4">
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead>
+        <tr class="table-light">
+          <th width="10%" class="ps-4">ID</th>
+          <th width="40%">Category Name</th>
+          <th width="20%">Created At</th>
+          <th width="15%">Status</th>
+          <th width="15%" class="text-end pe-4">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (categories && categories.length > 0) { %>
+          <% categories.forEach(function(item) { %>
+            <tr>
+              <td class="ps-4"><%= item.id %></td>
+              <td class="fw-semibold"><%= item.name %></td>
+              <td>
+                <span class="text-muted">
+                  <%= new Date(item.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %>
+                </span>
+              </td>
+              <td>
+                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2">Active</span>
+              </td>
+              <td class="text-end pe-4">
+                <div class="d-inline-flex gap-2">
+                  <button type="button" class="btn btn-sm btn-outline-primary" 
+                          onclick="openEditModal('<%= item.id %>', '<%= item.name %>')">
+                    <i class="bi bi-pencil me-1"></i> Edit
+                  </button>
+                  <a href="/admin/professions/delete/<%= item.id %>" class="btn btn-sm btn-outline-danger" 
+                     onclick="return confirm('Are you sure you want to delete this profession category?')">
+                    <i class="bi bi-trash me-1"></i> Delete
+                  </a>
+                </div>
+              </td>
+            </tr>
+          <% }); %>
+        <% } else { %>
+          <tr>
+            <td colspan="5" class="text-center py-5 text-muted">No categories found.</td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Add Category Modal -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="addCategoryModalLabel">Add Profession Category</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="/admin/professions/add" method="POST">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="name" class="form-label">Category / Profession Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="e.g., Web Developer, UI/UX Designer" required>
+            <div class="form-text">The profession title that rotates on your home page hero section.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save Category</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Category Modal -->
+<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title" id="editCategoryModalLabel">Update Profession Category</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="editCategoryForm" action="/admin/professions/edit" method="POST">
+        <input type="hidden" id="edit_id" name="id">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="edit_name" class="form-label">Category Name</label>
+            <input type="text" class="form-control" id="edit_name" name="name" required>
+            <div class="form-text">The profession title that rotates on your home page hero section.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Update Category</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openEditModal(id, name) {
+    document.getElementById('edit_id').value = id;
+    document.getElementById('edit_name').value = name;
+    
+    // Open the modal
+    const editModal = new bootstrap.Modal(document.getElementById('editCategoryModal'));
+    editModal.show();
+  }
+</script>
+
+<%- include('admin_footer') %>

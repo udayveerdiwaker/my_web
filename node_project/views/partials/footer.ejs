@@ -1,0 +1,456 @@
+<footer id="footer" class="footer">
+  <style>
+    /* Popup Styles */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .popup-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .popup-content {
+      background: var(--surface-color);
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+    }
+
+    .popup-overlay.active .popup-content {
+      transform: translateY(0);
+    }
+
+    .popup-icon {
+      font-size: 4rem;
+      color: var(--accent-color);
+      margin-bottom: 20px;
+    }
+
+    .popup-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: var(--heading-color);
+    }
+
+    .popup-content p {
+      color: var(--default-color);
+      margin-bottom: 25px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .popup-close-btn {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .popup-close-btn:hover {
+      background: var(--nav-hover-color);
+      transform: translateY(-3px);
+    }
+  </style>
+
+  <!-- Google Maps Section -->
+  <div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2777.800182148053!2d78.27636500244151!3d30.092406650524584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39093f3354762571%3A0x529be26f1d6d1438!2sWebsite%20Banaye%20%26%20Computer%20Sikhe!5e1!3m2!1sen!2sin!4v1750317961268!5m2!1sen!2sin"
+      frameborder="0"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+    <div class="map-overlay"></div>
+  </div>
+
+  <!-- Footer Content -->
+  <div class="footer-content">
+    <div class="container">
+      <div class="row g-4">
+        <!-- About Section -->
+        <div class="col-md-6 col-lg-3">
+          <div class="footer-widget">
+            <h3 class="footer-title">About Me</h3>
+            <p class="footer-text">
+              Hi, I'm <%= settings.first_name || 'Shiva Diwaker' %>. I'm a passionate developer ready to bring your ideas to life.
+              Let's connect and create something amazing together.
+            </p>
+            <a href="/about.php?about=About" class="footer-link">Learn more</a>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="col-md-6 col-lg-3">
+          <div class="footer-widget">
+            <h3 class="footer-title">Quick Links</h3>
+            <ul class="footer-links">
+              <% if (typeof navigation !== 'undefined' && navigation.length > 0) { %>
+                <% navigation.forEach(function(links) { %>
+                  <li>
+                    <a href="/<%= links.href %>" class="footer-link">
+                      <i class="bi bi-chevron-right"></i> <%= links.navbar_links %>
+                    </a>
+                  </li>
+                <% }); %>
+              <% } %>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Social Media -->
+        <div class="col-md-6 col-lg-3">
+          <div class="footer-widget">
+            <h3 class="footer-title">Let's Connect</h3>
+            <div class="social-links">
+              <a href="https://web.telegram.org/k/" class="social-icon telegram" target="_blank">
+                <i class="bi bi-telegram"></i>
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=100073101880912" class="social-icon facebook" target="_blank">
+                <i class="bi bi-facebook"></i>
+              </a>
+              <a href="https://www.instagram.com/shiva__diwaker/" class="social-icon instagram" target="_blank">
+                <i class="bi bi-instagram"></i>
+              </a>
+              <a href="https://teams.live.com/v2" class="social-icon teams" target="_blank">
+                <i class="bi bi-microsoft-teams"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/udayveer-diwaker-b96892356/" class="social-icon linkedin" target="_blank">
+                <i class="bi bi-linkedin"></i>
+              </a>
+              <a href="https://github.com/udayveerdiwaker" class="social-icon github" target="_blank">
+                <i class="bi bi-github"></i>
+              </a>
+            </div>
+            <div class="contact-info mt-3">
+              <p class="footer-text mb-1">
+                <i class="bi bi-envelope me-2"></i> <%= settings.email || '' %>
+              </p>
+              <p class="footer-text">
+                <i class="bi bi-phone me-2"></i> +91 <%= settings.number || '' %>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="col-md-6 col-lg-3">
+          <div class="footer-widget">
+            <h3 class="footer-title">Newsletter</h3>
+            <p class="footer-text">Subscribe to get updates on my latest projects and articles.</p>
+            <form class="newsletter-form" method="post" action="/newsletter-subscribe">
+              <div class="input-group">
+                <input type="email" name="newsletter_email" class="form-control" placeholder="Your Email" required>
+                <button class="btn-subscribe" type="submit">
+                  <i class="bi bi-send"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="copyright">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start">
+          &copy; <%= new Date().getFullYear() %> <strong><%= settings.first_name || 'Shiva Diwaker' %></strong>. All Rights Reserved
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          Designed with <i class="bi bi-heart-fill text-danger"></i> by <%= settings.first_name || 'Shiva Diwaker' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <div id="backToTop">
+    <svg class="progress-circle" width="100%" height="100%" viewBox="-1 -1 102 102">
+      <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+    </svg>
+    <i class="bi bi-arrow-up-short"></i>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  // Dynamic Toast Alerts
+  function showToast(message, type = 'success') {
+    const container = document.getElementById('toastContainer');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `custom-toast ${type === 'error' ? 'error-toast' : 'success-toast'}`;
+    
+    const iconClass = type === 'error' ? 'bi-exclamation-triangle-fill' : 'bi-check-circle-fill';
+    
+    toast.innerHTML = `
+      <i class="bi ${iconClass}"></i>
+      <div class="toast-message">${message}</div>
+      <button class="toast-close-btn" onclick="this.parentElement.classList.add('hide'); setTimeout(() => this.parentElement.remove(), 300);"><i class="bi bi-x"></i></button>
+    `;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      if (toast && toast.parentElement) {
+        toast.classList.add('hide');
+        setTimeout(() => toast.remove(), 300);
+      }
+    }, 5000);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // 1. Newsletter Form / Error Notification handlers
+    <% if (typeof newsletter_subscribed !== 'undefined' && newsletter_subscribed) { %>
+      showToast("Thank you for subscribing! You've been successfully added to our newsletter list.");
+    <% } %>
+
+    <% if (typeof newsletter_error !== 'undefined' && newsletter_error) { %>
+      showToast("<%= newsletter_error %>", "error");
+    <% } %>
+
+    // 2. Dark/Light Theme Switching logic
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    if (themeToggleBtn) {
+      const currentTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      updateThemeIcon(currentTheme);
+
+      themeToggleBtn.addEventListener('click', () => {
+        const activeTheme = document.documentElement.getAttribute('data-theme');
+        const targetTheme = activeTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', targetTheme);
+        localStorage.setItem('theme', targetTheme);
+        updateThemeIcon(targetTheme);
+      });
+    }
+
+    function updateThemeIcon(theme) {
+      if (!themeToggleBtn) return;
+      const icon = themeToggleBtn.querySelector('i');
+      if (theme === 'dark') {
+        icon.className = 'bi bi-sun-fill';
+      } else {
+        icon.className = 'bi bi-moon-fill';
+      }
+    }
+
+    // 3. Scroll Progress Indicator and backToTop outline circle rendering
+    const scrollProgress = document.getElementById('scrollProgress');
+    const backToTop = document.getElementById('backToTop');
+    const progressPath = document.querySelector('#backToTop path');
+    const pathLength = progressPath ? progressPath.getTotalLength() : 0;
+
+    if (progressPath) {
+      progressPath.style.strokeDasharray = `${pathLength} ${pathLength}`;
+      progressPath.style.strokeDashoffset = pathLength;
+    }
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      
+      if (docHeight > 0) {
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        if (scrollProgress) {
+          scrollProgress.style.width = `${scrollPercent}%`;
+        }
+
+        if (progressPath) {
+          const draw = pathLength * (scrollTop / docHeight);
+          progressPath.style.strokeDashoffset = pathLength - draw;
+        }
+      }
+
+      if (scrollTop > 300) {
+        if (backToTop) backToTop.classList.add('show');
+      } else {
+        if (backToTop) backToTop.classList.remove('show');
+      }
+    });
+
+    if (backToTop) {
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // 4. Custom Cursor Follower Spring animation
+    const follower = document.querySelector('.cursor-follower');
+    if (follower) {
+      let mouseX = 0, mouseY = 0;
+      let followerX = 0, followerY = 0;
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      function animateFollower() {
+        const speed = 0.15;
+        followerX += (mouseX - followerX) * speed;
+        followerY += (mouseY - followerY) * speed;
+
+        follower.style.left = `${followerX}px`;
+        follower.style.top = `${followerY}px`;
+        requestAnimationFrame(animateFollower);
+      }
+      animateFollower();
+
+      // Trigger hover sizes on elements
+      const interactives = document.querySelectorAll('a, button, .btn, .skill-card, .social-icon, .cta-button, .social-link');
+      interactives.forEach(item => {
+        item.addEventListener('mouseenter', () => follower.classList.add('hovering'));
+        item.addEventListener('mouseleave', () => follower.classList.remove('hovering'));
+      });
+    }
+
+    // 5. 3D Hover Tilt Effects on Skill Cards
+    const cards = document.querySelectorAll('.skill-card');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((centerY - y) / centerY) * 10;
+        const rotateY = ((x - centerX) / centerX) * 10;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      });
+    });
+
+    // 6. Initialize Animate On Scroll (AOS)
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+
+    // 7. Interactive Background Canvas Particle Network
+    const canvas = document.getElementById('particleCanvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = canvas.parentElement.offsetWidth;
+      let height = canvas.height = canvas.parentElement.offsetHeight;
+      
+      window.addEventListener('resize', () => {
+        width = canvas.width = canvas.parentElement.offsetWidth;
+        height = canvas.height = canvas.parentElement.offsetHeight;
+      });
+
+      const particles = [];
+      const particleCount = 45;
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          radius: Math.random() * 2 + 1
+        });
+      }
+
+      function animateParticles() {
+        ctx.clearRect(0, 0, width, height);
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        ctx.fillStyle = isDark ? 'rgba(16, 185, 129, 0.35)' : 'rgba(5, 150, 105, 0.15)';
+        ctx.strokeStyle = isDark ? 'rgba(16, 185, 129, 0.08)' : 'rgba(5, 150, 105, 0.04)';
+        
+        particles.forEach((p, idx) => {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+
+          for (let j = idx + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+            if (dist < 100) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.stroke();
+            }
+          }
+        });
+        requestAnimationFrame(animateParticles);
+      }
+      animateParticles();
+    }
+
+    // 8. Magnetic Button Hover Attraction Effects
+    const magneticBtns = document.querySelectorAll('.cta-button, .btn-primary, .submit-btn, .theme-switch-btn, .social-link');
+    magneticBtns.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px) scale(1.02)`;
+        btn.style.transition = 'none';
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0px, 0px) scale(1)';
+        btn.style.transition = 'transform 0.3s ease';
+      });
+    });
+  });
+
+  // 7. Fullscreen Preloader Fade Out
+  window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+      preloader.classList.add('fade-out');
+      setTimeout(() => {
+        preloader.remove();
+      }, 600);
+    }
+  });
+</script>
+</body>
+</html>

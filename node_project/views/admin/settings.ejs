@@ -1,0 +1,119 @@
+<%- include('admin_header') %>
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0">Website Settings Management</h1>
+</div>
+
+<% if (typeof success !== 'undefined' && success) { %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="bi bi-check-circle-fill me-2"></i> <%= success %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
+<% if (typeof error !== 'undefined' && error) { %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <i class="bi bi-exclamation-triangle-fill me-2"></i> <%= error %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
+<div class="row g-4">
+  <!-- View Current Settings -->
+  <div class="col-lg-5">
+    <div class="card shadow-sm border-0 h-100">
+      <div class="card-body">
+        <h5 class="card-title mb-4 pb-2 border-bottom">Current Configuration</h5>
+        
+        <div class="mb-4">
+          <label class="text-muted d-block small text-uppercase">First Name</label>
+          <span class="fs-5 fw-semibold"><%= settings.first_name || 'Not Configured' %></span>
+        </div>
+        
+        <div class="mb-4">
+          <label class="text-muted d-block small text-uppercase">Email Address</label>
+          <span class="fs-6 fw-semibold"><%= settings.email || 'Not Configured' %></span>
+        </div>
+        
+        <div class="mb-4">
+          <label class="text-muted d-block small text-uppercase">Contact Number</label>
+          <span class="fs-6 fw-semibold">+91 <%= settings.number || 'Not Configured' %></span>
+        </div>
+
+        <div class="row">
+          <div class="col-6 mb-3">
+            <label class="text-muted d-block small text-uppercase mb-2">Profile Image</label>
+            <% if (settings.images) { %>
+              <div class="p-2 border rounded text-center">
+                <img src="/image/<%= settings.images %>" alt="Profile" style="max-height: 100px; max-width: 100%; object-fit: contain;">
+                <span class="d-block text-truncate small mt-2 text-muted"><%= settings.images %></span>
+              </div>
+            <% } else { %>
+              <span class="text-muted small">No profile image uploaded</span>
+            <% } %>
+          </div>
+          
+          <div class="col-6 mb-3">
+            <label class="text-muted d-block small text-uppercase mb-2">Website Logo</label>
+            <% if (settings.logo) { %>
+              <div class="p-2 border rounded text-center">
+                <img src="/image/<%= settings.logo %>" alt="Logo" style="max-height: 100px; max-width: 100%; object-fit: contain;">
+                <span class="d-block text-truncate small mt-2 text-muted"><%= settings.logo %></span>
+              </div>
+            <% } else { %>
+              <span class="text-muted small">No logo uploaded</span>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Update Settings Form -->
+  <div class="col-lg-7">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <h5 class="card-title mb-4 pb-2 border-bottom">Modify Settings</h5>
+        
+        <form action="/admin/settings/update" method="POST" enctype="multipart/form-data" class="row g-3">
+          <input type="hidden" name="id" value="<%= settings.id %>">
+          
+          <div class="col-12">
+            <label for="first_name" class="form-label">First Name / Portfolio Title</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" value="<%= settings.first_name || '' %>" required>
+          </div>
+          
+          <div class="col-md-6">
+            <label for="email" class="form-label">Contact Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="<%= settings.email || '' %>" required>
+          </div>
+          
+          <div class="col-md-6">
+            <label for="number" class="form-label">Contact Number (10 digits)</label>
+            <input type="tel" class="form-control" id="number" name="number" value="<%= settings.number || '' %>" pattern="[0-9]{10}" required>
+          </div>
+          
+          <div class="col-md-6">
+            <label for="images" class="form-label">Upload Profile Image</label>
+            <input type="file" class="form-control" id="images" name="images" accept="image/*">
+            <div class="form-text">Leave blank to keep current profile photo.</div>
+          </div>
+          
+          <div class="col-md-6">
+            <label for="logo" class="form-label">Upload Website Logo</label>
+            <input type="file" class="form-control" id="logo" name="logo" accept="image/*">
+            <div class="form-text">Leave blank to keep current logo image.</div>
+          </div>
+          
+          <div class="col-12 text-end mt-4">
+            <button type="submit" class="btn btn-primary px-4 py-2">
+              <i class="bi bi-save me-2"></i> Save Settings
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('admin_footer') %>

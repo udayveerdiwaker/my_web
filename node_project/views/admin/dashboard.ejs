@@ -1,0 +1,193 @@
+<%- include('admin_header') %>
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0">Dashboard Overview</h1>
+</div>
+
+<!-- Stats Cards -->
+<div class="row g-4 mb-4">
+  <div class="col-md-6 col-lg-3">
+    <div class="card h-100">
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <div class="count" style="font-size: 2rem; font-weight: 700; color: var(--heading-color);"><%= navCount %></div>
+            <div class="label" style="font-size: 0.85rem; color: #6c757d; font-weight: 500; text-transform: uppercase;">Navigation Links</div>
+          </div>
+          <div class="card-icon bg-primary bg-opacity-10 text-primary" style="width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+            <i class="bi bi-link-45deg"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-6 col-lg-3">
+    <div class="card h-100">
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <div class="count" style="font-size: 2rem; font-weight: 700; color: var(--heading-color);"><%= categoryCount %></div>
+            <div class="label" style="font-size: 0.85rem; color: #6c757d; font-weight: 500; text-transform: uppercase;">Profession Categories</div>
+          </div>
+          <div class="card-icon bg-success bg-opacity-10 text-success" style="width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+            <i class="bi bi-briefcase"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-6 col-lg-3">
+    <div class="card h-100">
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <div class="count" style="font-size: 2rem; font-weight: 700; color: var(--heading-color);">12</div>
+            <div class="label" style="font-size: 0.85rem; color: #6c757d; font-weight: 500; text-transform: uppercase;">Projects</div>
+          </div>
+          <div class="card-icon bg-info bg-opacity-10 text-info" style="width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+            <i class="bi bi-collection"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-6 col-lg-3">
+    <div class="card h-100">
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <div class="count" style="font-size: 2rem; font-weight: 700; color: var(--heading-color);">1.2K</div>
+            <div class="label" style="font-size: 0.85rem; color: #6c757d; font-weight: 500; text-transform: uppercase;">Monthly Views</div>
+          </div>
+          <div class="card-icon bg-warning bg-opacity-10 text-warning" style="width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+            <i class="bi bi-eye"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row g-4 mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-4">Quick Actions</h5>
+        <div class="row g-3">
+          <div class="col-md-3">
+            <a href="/admin/navigation" class="btn btn-outline-primary w-100 py-3">
+              <i class="bi bi-pencil-square me-2"></i> Edit Navigation
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a href="/admin/professions" class="btn btn-outline-success w-100 py-3">
+              <i class="bi bi-tags me-2"></i> Manage Categories
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a href="/admin/settings" class="btn btn-outline-info w-100 py-3">
+              <i class="bi bi-sliders me-2"></i> Website Settings
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a href="/" target="_blank" class="btn btn-outline-success w-100 py-3">
+              <i class="bi bi-eye me-2"></i> View Portfolio
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Recent Activity & Status -->
+<div class="row g-4">
+  <div class="col-lg-8">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-4">Recent Activity</h5>
+        
+        <div class="activity-item" style="border-left: 2px solid #e0e0e0; padding-left: 20px; position: relative; margin-bottom: 25px;">
+          <div class="dot" style="width: 12px; height: 12px; border-radius: 50%; background: #4361ee; position: absolute; left: -7px; top: 5px;"></div>
+          <div class="mb-2">
+            <strong>Updated navigation menu</strong>
+            <div class="time" style="font-size: 0.8rem; color: #6c757d;">2 hours ago</div>
+          </div>
+          <p class="mb-0 text-muted">Added new "Contact" link to the main navigation</p>
+        </div>
+        
+        <div class="activity-item" style="border-left: 2px solid #e0e0e0; padding-left: 20px; position: relative; margin-bottom: 25px;">
+          <div class="dot" style="width: 12px; height: 12px; border-radius: 50%; background: #2ec4b6; position: absolute; left: -7px; top: 5px;"></div>
+          <div class="mb-2">
+            <strong>Added new profession</strong>
+            <div class="time" style="font-size: 0.8rem; color: #6c757d;">Yesterday, 4:30 PM</div>
+          </div>
+          <p class="mb-0 text-muted">Created "UI/UX Designer" category in professions</p>
+        </div>
+        
+        <div class="activity-item" style="border-left: 2px solid #e0e0e0; padding-left: 20px; position: relative; margin-bottom: 0;">
+          <div class="dot" style="width: 12px; height: 12px; border-radius: 50%; background: #ff9f1c; position: absolute; left: -7px; top: 5px;"></div>
+          <div class="mb-2">
+            <strong>Updated website settings</strong>
+            <div class="time" style="font-size: 0.8rem; color: #6c757d;">Monday, 10:15 AM</div>
+          </div>
+          <p class="mb-0 text-muted">Changed primary color to indigo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-4">System Status</h5>
+        
+        <div class="d-flex align-items-center mb-3">
+          <div class="bg-success bg-opacity-10 p-2 rounded me-3 text-success">
+            <i class="bi bi-check-circle-fill"></i>
+          </div>
+          <div>
+            <h6 class="mb-0">Node.js Version</h6>
+            <small class="text-muted"><%= nodeVersion %></small>
+          </div>
+        </div>
+        
+        <div class="d-flex align-items-center mb-3">
+          <div class="bg-success bg-opacity-10 p-2 rounded me-3 text-success">
+            <i class="bi bi-check-circle-fill"></i>
+          </div>
+          <div>
+            <h6 class="mb-0">MySQL Engine</h6>
+            <small class="text-muted">Connected</small>
+          </div>
+        </div>
+        
+        <div class="d-flex align-items-center mb-3">
+          <div class="bg-warning bg-opacity-10 p-2 rounded me-3 text-warning">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+          </div>
+          <div>
+            <h6 class="mb-0">Application Port</h6>
+            <small class="text-muted">Port <%= port %></small>
+          </div>
+        </div>
+        
+        <div class="d-flex align-items-center">
+          <div class="bg-success bg-opacity-10 p-2 rounded me-3 text-success">
+            <i class="bi bi-check-circle-fill"></i>
+          </div>
+          <div>
+            <h6 class="mb-0">Session Cookies</h6>
+            <small class="text-muted">Secure (Express-Session)</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('admin_footer') %>

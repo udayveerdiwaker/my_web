@@ -1,0 +1,64 @@
+======================================================================
+                         SHIVA DIWAKER
+======================================================================
+Email: shivadiwaker@gmail.com
+Phone: +91 0000000000
+Address: House No. 507 Awas Vikas Colony, Rishikesh, Uttarakhand
+Date of Birth: 08-01-2005
+Gender: Male
+Nationality: Indian
+Status: Unmarried
+
+----------------------------------------------------------------------
+PROFESSIONAL SUMMARY
+----------------------------------------------------------------------
+A passionate and motivated Web Developer based in Rishikesh, Uttarakhand. 
+Possessing hands-on technical experience in Computer Diagnostics, Operating 
+System installations, and Data Entry operations. Actively working towards a 
+career in software development and preparing for Bachelor of Computer Applications 
+(BCA) studies.
+
+----------------------------------------------------------------------
+TECHNICAL SKILLS
+----------------------------------------------------------------------
+* Front-End Web Development: HTML5, CSS3, Bootstrap 5, JavaScript (ES6)
+* Back-End Technologies: PHP, Node.js, Express.js
+* Databases: MySQL, Database Administration
+* Operations: Data entry execution, system backups
+* Hardware: Windows OS installation, software installation & troubleshooting
+
+----------------------------------------------------------------------
+EDUCATION
+----------------------------------------------------------------------
+* 12th Standard
+  Punjab Singh Kshetra Inter College, Rishikesh (2024-2025)
+  
+* 10th Standard
+  Modern School, Rishikesh (2021-2022)
+
+----------------------------------------------------------------------
+WORK EXPERIENCE
+----------------------------------------------------------------------
+* Computer Technician | Freelance / Local Support
+  - Installed and configured Windows operating systems.
+  - Installed custom software suites and executed diagnostic cleanups.
+  - Repaired local hardware malfunctions and updated drivers.
+
+* Data Entry Operator
+  - Logged precise data inputs inside database tables.
+  - Handled automated spreadsheets and updated metadata details.
+  - Maintained security backups of client sheets.
+
+----------------------------------------------------------------------
+LANGUAGES
+----------------------------------------------------------------------
+* Hindi (Fluent / Native)
+* English (Basic)
+
+----------------------------------------------------------------------
+HOBBIES & INTERESTS
+----------------------------------------------------------------------
+* Cricket
+* Football
+* Swimming
+======================================================================
